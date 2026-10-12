@@ -7,11 +7,7 @@ interface LogoProps {
   showWordmark?: boolean;
 }
 
-export function Logo({
-  className,
-  size = "md",
-  showWordmark = true,
-}: LogoProps) {
+export function Logo({ className, size = "md", showWordmark = true }: LogoProps) {
   const sizeMap = {
     sm: { glyph: "w-7 h-7", text: "text-lg", spacing: "gap-2" },
     md: { glyph: "w-9 h-9", text: "text-2xl", spacing: "gap-2.5" },
@@ -45,34 +41,38 @@ export function Logo({
           aria-hidden="true"
         >
           <defs>
-            <linearGradient id="aerobook-wing-grad" x1="6" y1="8" x2="34" y2="34" gradientUnits="userSpaceOnUse">
+            <linearGradient
+              id="aerobook-wing-grad"
+              x1="6"
+              y1="8"
+              x2="34"
+              y2="34"
+              gradientUnits="userSpaceOnUse"
+            >
               <stop offset="0%" stopColor="#0E7C7B" />
               <stop offset="100%" stopColor="#0A6362" />
             </linearGradient>
-            <linearGradient id="aerobook-accent-grad" x1="18" y1="20" x2="36" y2="36" gradientUnits="userSpaceOnUse">
+            <linearGradient
+              id="aerobook-accent-grad"
+              x1="18"
+              y1="20"
+              x2="36"
+              y2="36"
+              gradientUnits="userSpaceOnUse"
+            >
               <stop offset="0%" stopColor="#FF6B4A" />
               <stop offset="100%" stopColor="#E85A3A" />
             </linearGradient>
           </defs>
 
           {/* Upper supersonic wing foil */}
-          <path
-            d="M6 24L34 8L22 34L18 24L6 24Z"
-            fill="url(#aerobook-wing-grad)"
-          />
+          <path d="M6 24L34 8L22 34L18 24L6 24Z" fill="url(#aerobook-wing-grad)" />
 
           {/* Underwing facet creating depth and fold */}
-          <path
-            d="M18 24L34 8L20 20L18 24Z"
-            fill="#084E4D"
-            opacity="0.9"
-          />
+          <path d="M18 24L34 8L20 20L18 24Z" fill="#084E4D" opacity="0.9" />
 
           {/* Trailing origami rudder / coral lift accent */}
-          <path
-            d="M18 24L22 34L25 25L18 24Z"
-            fill="url(#aerobook-accent-grad)"
-          />
+          <path d="M18 24L22 34L25 25L18 24Z" fill="url(#aerobook-accent-grad)" />
 
           {/* Flight path trail line */}
           <path

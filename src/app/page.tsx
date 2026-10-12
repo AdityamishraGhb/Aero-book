@@ -54,7 +54,12 @@ export default function HomePage() {
 
             {/* Quick Action Preview */}
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-              <Button asChild variant="accent" size="lg" className="h-12 px-7 text-sm font-semibold shadow-md">
+              <Button
+                asChild
+                variant="accent"
+                size="lg"
+                className="h-12 px-7 text-sm font-semibold shadow-md"
+              >
                 <Link href="#popular-routes" className="inline-flex items-center gap-2">
                   <span>Explore Flight Intelligence</span>
                   <ArrowRight className="h-4 w-4" />
@@ -68,7 +73,9 @@ export default function HomePage() {
             {/* Value Highlights */}
             <div className="mt-10 grid grid-cols-2 gap-4 border-t border-border/80 pt-8 sm:grid-cols-4">
               <div className="flex flex-col items-center p-2">
-                <span className="font-heading text-xl sm:text-2xl font-bold text-foreground">1,200+</span>
+                <span className="font-heading text-xl sm:text-2xl font-bold text-foreground">
+                  1,200+
+                </span>
                 <span className="text-xs text-muted-foreground mt-0.5">Airports Indexed</span>
               </div>
               <div className="flex flex-col items-center p-2">
@@ -76,11 +83,15 @@ export default function HomePage() {
                 <span className="text-xs text-muted-foreground mt-0.5">Hidden Fees</span>
               </div>
               <div className="flex flex-col items-center p-2">
-                <span className="font-heading text-xl sm:text-2xl font-bold text-foreground">100%</span>
+                <span className="font-heading text-xl sm:text-2xl font-bold text-foreground">
+                  100%
+                </span>
                 <span className="text-xs text-muted-foreground mt-0.5">Zod Type-Safe</span>
               </div>
               <div className="flex flex-col items-center p-2">
-                <span className="font-heading text-xl sm:text-2xl font-bold text-accent">₹ INR</span>
+                <span className="font-heading text-xl sm:text-2xl font-bold text-accent">
+                  ₹ INR
+                </span>
                 <span className="text-xs text-muted-foreground mt-0.5">India Default Locale</span>
               </div>
             </div>
@@ -96,7 +107,8 @@ export default function HomePage() {
               Engineered for clarity and speed
             </h2>
             <p className="mt-3 text-sm text-muted-foreground">
-              Every detail in AeroBook is tuned to provide a calm, trustworthy, and modern flight shopping experience.
+              Every detail in AeroBook is tuned to provide a calm, trustworthy, and modern flight
+              shopping experience.
             </p>
           </div>
 
@@ -110,7 +122,8 @@ export default function HomePage() {
                 Algorithmic Best Value
               </h3>
               <p className="mt-2 text-xs sm:text-sm text-muted-foreground leading-relaxed">
-                Our proprietary composite scoring combines flight duration, price delta, and layover inconvenience into a transparent &quot;Best&quot; score.
+                Our proprietary composite scoring combines flight duration, price delta, and layover
+                inconvenience into a transparent &quot;Best&quot; score.
               </p>
             </div>
 
@@ -123,7 +136,8 @@ export default function HomePage() {
                 URL-First Param State
               </h3>
               <p className="mt-2 text-xs sm:text-sm text-muted-foreground leading-relaxed">
-                Filter by stops, departure windows, cabin classes, and airlines with deep URL state. Share your exact search result link with zero drift.
+                Filter by stops, departure windows, cabin classes, and airlines with deep URL state.
+                Share your exact search result link with zero drift.
               </p>
             </div>
 
@@ -136,7 +150,8 @@ export default function HomePage() {
                 Strict Provider Normalization
               </h3>
               <p className="mt-2 text-xs sm:text-sm text-muted-foreground leading-relaxed">
-                External airline schemas are validated by Zod at our BFF boundary. Consistent, reliable domain representations across all routes.
+                External airline schemas are validated by Zod at our BFF boundary. Consistent,
+                reliable domain representations across all routes.
               </p>
             </div>
           </div>
@@ -162,10 +177,38 @@ export default function HomePage() {
 
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {[
-              { from: "DEL", fromCity: "New Delhi", to: "BOM", toCity: "Mumbai", duration: "2h 10m", estFare: "₹4,299" },
-              { from: "BLR", fromCity: "Bengaluru", to: "DEL", toCity: "New Delhi", duration: "2h 45m", estFare: "₹5,150" },
-              { from: "BOM", fromCity: "Mumbai", to: "GOI", toCity: "Goa Dabolim", duration: "1h 15m", estFare: "₹2,890" },
-              { from: "MAA", fromCity: "Chennai", to: "CCU", toCity: "Kolkata", duration: "2h 20m", estFare: "₹4,750" },
+              {
+                from: "DEL",
+                fromCity: "New Delhi",
+                to: "BOM",
+                toCity: "Mumbai",
+                duration: "2h 10m",
+                estFare: "₹4,299",
+              },
+              {
+                from: "BLR",
+                fromCity: "Bengaluru",
+                to: "DEL",
+                toCity: "New Delhi",
+                duration: "2h 45m",
+                estFare: "₹5,150",
+              },
+              {
+                from: "BOM",
+                fromCity: "Mumbai",
+                to: "GOI",
+                toCity: "Goa Dabolim",
+                duration: "1h 15m",
+                estFare: "₹2,890",
+              },
+              {
+                from: "MAA",
+                fromCity: "Chennai",
+                to: "CCU",
+                toCity: "Kolkata",
+                duration: "2h 20m",
+                estFare: "₹4,750",
+              },
             ].map((route) => (
               <div
                 key={`${route.from}-${route.to}`}
@@ -182,19 +225,25 @@ export default function HomePage() {
 
                 <div className="mt-4 flex items-center justify-between">
                   <div>
-                    <span className="font-heading text-xl font-extrabold text-foreground">{route.from}</span>
+                    <span className="font-heading text-xl font-extrabold text-foreground">
+                      {route.from}
+                    </span>
                     <p className="text-xs text-muted-foreground">{route.fromCity}</p>
                   </div>
                   <Plane className="h-4 w-4 text-primary transition-transform group-hover:translate-x-1" />
                   <div className="text-right">
-                    <span className="font-heading text-xl font-extrabold text-foreground">{route.to}</span>
+                    <span className="font-heading text-xl font-extrabold text-foreground">
+                      {route.to}
+                    </span>
                     <p className="text-xs text-muted-foreground">{route.toCity}</p>
                   </div>
                 </div>
 
                 <div className="mt-4 flex items-center justify-between border-t border-border/60 pt-3">
                   <span className="text-xs text-muted-foreground">Fares from</span>
-                  <span className="font-heading text-sm font-bold text-accent">{route.estFare}</span>
+                  <span className="font-heading text-sm font-bold text-accent">
+                    {route.estFare}
+                  </span>
                 </div>
               </div>
             ))}
@@ -233,10 +282,7 @@ export default function HomePage() {
                 a: "AeroBook passes your passenger details securely to the chosen ticketing provider or airline reservation system, providing you with a direct airline PNR reference.",
               },
             ].map((faq, idx) => (
-              <div
-                key={idx}
-                className="rounded-xl border border-border bg-card p-5 shadow-sm"
-              >
+              <div key={idx} className="rounded-xl border border-border bg-card p-5 shadow-sm">
                 <h3 className="font-heading text-sm sm:text-base font-semibold text-foreground">
                   {faq.q}
                 </h3>

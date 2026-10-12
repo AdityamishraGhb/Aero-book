@@ -16,7 +16,8 @@ export default function NotFound() {
         Flight Path Not Found
       </h1>
       <p className="mt-3 max-w-md text-sm text-muted-foreground leading-relaxed">
-        The destination or booking route you are looking for has been moved, cancelled, or doesn’t exist in our radar.
+        The destination or booking route you are looking for has been moved, cancelled, or doesn’t
+        exist in our radar.
       </p>
 
       <div className="mt-8 flex flex-wrap items-center justify-center gap-4">

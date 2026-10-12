@@ -39,7 +39,8 @@ export default function ErrorPage({
         We Encountered Turbulence
       </h1>
       <p className="mt-2 max-w-md text-sm text-muted-foreground leading-relaxed">
-        Something unexpected occurred while processing your request. Rest assured, our systems have logged the event.
+        Something unexpected occurred while processing your request. Rest assured, our systems have
+        logged the event.
       </p>
 
       {error?.digest && (

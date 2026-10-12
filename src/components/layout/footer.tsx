@@ -6,11 +6,11 @@ import { ShieldCheck, HeartHandshake, Zap, Globe2 } from "lucide-react";
 import { Logo } from "./logo";
 
 function CurrentYear() {
-  const [year, setYear] = React.useState(2026);
-
-  React.useEffect(() => {
-    setYear(new Date().getFullYear());
-  }, []);
+  const year = React.useSyncExternalStore(
+    () => () => {},
+    () => new Date().getFullYear(),
+    () => 2026
+  );
 
   return <>{year}</>;
 }
@@ -23,12 +23,11 @@ export function Footer() {
           {/* Brand Column */}
           <div className="space-y-4 md:col-span-2">
             <Logo size="md" />
-            <p className="text-sm font-medium text-foreground">
-              Fly smarter. Book anywhere.
-            </p>
+            <p className="text-sm font-medium text-foreground">Fly smarter. Book anywhere.</p>
             <p className="max-w-sm text-xs leading-relaxed text-muted-foreground">
-              AeroBook is a modern metasearch and travel intelligence platform delivering
-              unbiased flight comparisons, transparent fare breakdowns, and direct booking paths across hundreds of global carriers.
+              AeroBook is a modern metasearch and travel intelligence platform delivering unbiased
+              flight comparisons, transparent fare breakdowns, and direct booking paths across
+              hundreds of global carriers.
             </p>
 
             <div className="flex flex-wrap items-center gap-4 pt-2 text-xs text-muted-foreground">
@@ -105,15 +104,23 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Support & Legal */}
+          {/* Support, Legal & Dev */}
           <div className="space-y-3">
             <h3 className="font-heading text-xs font-semibold uppercase tracking-wider text-foreground">
-              Legal & Support
+              Legal & Dev
             </h3>
             <ul className="space-y-2 text-xs text-muted-foreground">
               <li>
                 <Link href="/#faq" className="hover:text-primary transition-colors">
                   Help Center
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/dev/ui"
+                  className="text-accent hover:text-accent-hover font-medium transition-colors"
+                >
+                  UI Design System (/dev/ui)
                 </Link>
               </li>
               <li>
@@ -124,11 +131,6 @@ export function Footer() {
               <li>
                 <span className="hover:text-foreground cursor-pointer transition-colors">
                   Terms of Service
-                </span>
-              </li>
-              <li>
-                <span className="hover:text-foreground cursor-pointer transition-colors">
-                  Cookie Preferences
                 </span>
               </li>
             </ul>

@@ -50,9 +50,10 @@ export function formatDate(
   style: "short" | "medium" | "long" = "short",
   locale = DEFAULT_LOCALE
 ): string {
-  const date = typeof dateInput === "string" || typeof dateInput === "number"
-    ? new Date(dateInput)
-    : dateInput;
+  const date =
+    typeof dateInput === "string" || typeof dateInput === "number"
+      ? new Date(dateInput)
+      : dateInput;
 
   if (Number.isNaN(date.getTime())) {
     return "Invalid date";
@@ -62,8 +63,8 @@ export function formatDate(
     style === "short"
       ? { day: "2-digit", month: "2-digit", year: "numeric" }
       : style === "medium"
-      ? { day: "numeric", month: "short", year: "numeric" }
-      : { weekday: "short", day: "numeric", month: "short", year: "numeric" };
+        ? { day: "numeric", month: "short", year: "numeric" }
+        : { weekday: "short", day: "numeric", month: "short", year: "numeric" };
 
   return new Intl.DateTimeFormat(locale, options).format(date);
 }
@@ -71,13 +72,11 @@ export function formatDate(
 /**
  * Format time from a date input into 12-hour or 24-hour time (e.g. 14:35 or 02:35 PM).
  */
-export function formatTime(
-  dateInput: Date | string | number,
-  locale = DEFAULT_LOCALE
-): string {
-  const date = typeof dateInput === "string" || typeof dateInput === "number"
-    ? new Date(dateInput)
-    : dateInput;
+export function formatTime(dateInput: Date | string | number, locale = DEFAULT_LOCALE): string {
+  const date =
+    typeof dateInput === "string" || typeof dateInput === "number"
+      ? new Date(dateInput)
+      : dateInput;
 
   if (Number.isNaN(date.getTime())) {
     return "--:--";
