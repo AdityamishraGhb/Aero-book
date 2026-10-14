@@ -410,7 +410,7 @@ export function generateMockFlights(
       seatsRemaining,
       baggage,
       amenities,
-      bookingUrl: `/book?offerId=offer-${query.from}${query.to}-${i + 1}&from=${query.from}&to=${query.to}`,
+      bookingUrl: `/flights/${query.from}-${query.to}/offer-${query.from}${query.to}-${i + 1}?depart=${query.depart}&trip=${query.trip}&adults=${query.adults}&cabin=${query.cabin}`,
     });
   }
 

@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 import {
   useQueryState,
@@ -36,6 +36,7 @@ function getDefaultDepartDate(): string {
 }
 
 export default function FlightResultsPage() {
+  const router = useRouter();
   const params = useParams<{ route: string }>();
   const routeParam = params?.route || "DEL-BOM";
 
@@ -112,10 +113,7 @@ export default function FlightResultsPage() {
     },
   });
 
-  const rawOffers: FlightOffer[] = React.useMemo(
-    () => data?.offers || [],
-    [data?.offers]
-  );
+  const rawOffers: FlightOffer[] = React.useMemo(() => data?.offers || [], [data?.offers]);
 
   // Extract min and max prices across all offers
   const minPricePossible = React.useMemo(() => {
@@ -340,8 +338,16 @@ export default function FlightResultsPage() {
                     isCheapestOffer={sort === "cheapest" && index === 0}
                     isFastestOffer={sort === "fastest" && index === 0}
                     onSelect={(selected) => {
-                      // Simulates selection action
-                      window.location.href = selected.bookingUrl;
+                      const queryParams = new URLSearchParams({
+                        depart,
+                        ...(returnDate ? { return: returnDate } : {}),
+                        trip,
+                        adults: String(adults),
+                        children: String(childrenCount),
+                        infants: String(infants),
+                        cabin,
+                      }).toString();
+                      router.push(`/flights/${from}-${to}/${selected.id}?${queryParams}`);
                     }}
                   />
                 ))}

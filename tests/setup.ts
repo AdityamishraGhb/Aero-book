@@ -8,6 +8,7 @@ if (typeof window !== "undefined") {
     unobserve() {}
     disconnect() {}
   };
+  window.scrollTo = vi.fn();
 }
 
 vi.mock("next/navigation", () => ({
