@@ -1,23 +1,41 @@
-import { Skeleton } from "@/components/ui/skeleton";
-import { Plane } from "lucide-react";
-
 export default function Loading() {
   return (
-    <div className="flex flex-1 flex-col items-center justify-center px-4 py-24">
-      <div className="flex flex-col items-center gap-4 text-center">
-        <div className="relative flex h-16 w-16 items-center justify-center rounded-2xl bg-primary/10 text-primary">
-          <Plane className="h-8 w-8 animate-pulse text-primary" aria-hidden="true" />
-        </div>
-        <p className="font-heading text-sm font-semibold tracking-wide text-foreground">
-          Loading AeroBook...
-        </p>
+    <div
+      role="status"
+      aria-label="Loading AeroBook"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-[#05203c] transition-colors"
+    >
+      <div className="relative flex items-center justify-center">
+        {/* Glowing animated spinner ring */}
+        <div className="h-20 w-20 animate-spin rounded-full border-[2.5px] border-white/20 border-t-white border-r-white/70" />
 
-        {/* Shimmer placeholders */}
-        <div className="w-full max-w-sm space-y-2.5 pt-4">
-          <Skeleton className="h-4 w-full rounded-md" />
-          <Skeleton className="h-4 w-4/5 mx-auto rounded-md" />
+        {/* Central Sunburst / Compass Logo Glyph (Matches Skyscanner exact icon) */}
+        <div className="absolute inset-0 flex items-center justify-center">
+          <svg
+            viewBox="0 0 40 40"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-10 w-10 text-white animate-pulse"
+            aria-hidden="true"
+          >
+            {/* Curved horizon / bridge arch */}
+            <path
+              d="M10 26C14 21.5 26 21.5 30 26"
+              stroke="white"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+            />
+            {/* 5 radiating sunburst rays */}
+            <path d="M11 20.5L7 16.5" stroke="white" strokeWidth="2.5" strokeLinecap="round" />
+            <path d="M14 16.5L11 10.5" stroke="white" strokeWidth="2.5" strokeLinecap="round" />
+            <path d="M20 14.5V7.5" stroke="white" strokeWidth="2.5" strokeLinecap="round" />
+            <path d="M26 16.5L29 10.5" stroke="white" strokeWidth="2.5" strokeLinecap="round" />
+            <path d="M29 20.5L33 16.5" stroke="white" strokeWidth="2.5" strokeLinecap="round" />
+          </svg>
         </div>
       </div>
+
+      <span className="sr-only">Loading AeroBook...</span>
     </div>
   );
 }

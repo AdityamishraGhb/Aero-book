@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import {
   Plane,
@@ -9,6 +10,9 @@ import {
   ArrowRight,
   SlidersHorizontal,
   ChevronDown,
+  Hotel,
+  Car,
+  Compass,
 } from "lucide-react";
 import { FlightSearchForm } from "@/components/search/flight-search-form";
 import { buildSearchUrl } from "@/lib/url";
@@ -108,80 +112,106 @@ export default function HomePage() {
 
   return (
     <div className="flex flex-col flex-1 w-full">
-      {/* Hero Section with Search Panel */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-surface via-background to-background pt-10 pb-16 sm:pt-16 sm:pb-24">
-        {/* Subtle geometric gradient backdrop */}
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
-        >
-          <div
-            style={{
-              clipPath:
-                "polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)",
-            }}
-            className="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-primary/30 to-accent/20 opacity-40 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"
-          />
-        </div>
-
+      {/* Skyscanner Benchmark Hero Section with Midnight Navy Background */}
+      <section className="relative overflow-hidden bg-[#05203c] pt-10 pb-16 sm:pt-14 sm:pb-20 text-white">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-3xl text-center mb-8 sm:mb-12">
-            {/* Pill Badge */}
-            <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card/85 px-4 py-1.5 text-xs font-semibold text-foreground shadow-xs backdrop-blur-sm">
-              <Sparkles className="h-3.5 w-3.5 text-accent" />
-              <span>Next-Generation Flight Metasearch</span>
-              <span className="h-1 w-1 rounded-full bg-border" />
-              <span className="text-primary font-bold">Live Route Engine</span>
-            </div>
-
-            {/* Hero Headline */}
-            <h1 className="mt-4 font-heading text-4xl font-extrabold tracking-tight text-foreground sm:text-6xl">
-              Fly smarter. <br />
-              <span className="bg-gradient-to-r from-primary via-primary-hover to-primary bg-clip-text text-transparent">
-                Book anywhere.
-              </span>
+          {/* Skyscanner Benchmark Headline */}
+          <div className="mb-6 sm:mb-8 text-left">
+            <h1 className="font-heading text-3xl font-extrabold tracking-tight text-white sm:text-4xl lg:text-5xl leading-tight">
+              Millions of cheap flights. One simple search.
             </h1>
-
-            {/* Tagline Subtitle */}
-            <p className="mt-4 text-sm sm:text-base leading-relaxed text-muted-foreground">
-              Compare live routes, find best-value airfares, and experience seamless flight shopping
-              across hundreds of global carriers with zero hidden markups.
-            </p>
+            <h2 className="sr-only">Fly smarter. Book anywhere.</h2>
           </div>
 
-          {/* Full Interactive Search Form Widget */}
-          <div className="mx-auto max-w-5xl">
+          {/* Unified Horizontal Search Form */}
+          <div className="w-full">
             <FlightSearchForm />
-          </div>
-
-          {/* Value Stat Highlights */}
-          <div className="mx-auto max-w-4xl mt-12 grid grid-cols-2 gap-4 border-t border-border/80 pt-8 sm:grid-cols-4">
-            <div className="flex flex-col items-center p-2 text-center">
-              <span className="font-heading text-xl sm:text-2xl font-bold text-foreground">
-                1,200+
-              </span>
-              <span className="text-xs text-muted-foreground mt-0.5">Airports Indexed</span>
-            </div>
-            <div className="flex flex-col items-center p-2 text-center">
-              <span className="font-heading text-xl sm:text-2xl font-bold text-primary">0%</span>
-              <span className="text-xs text-muted-foreground mt-0.5">Hidden Fees</span>
-            </div>
-            <div className="flex flex-col items-center p-2 text-center">
-              <span className="font-heading text-xl sm:text-2xl font-bold text-foreground">
-                100%
-              </span>
-              <span className="text-xs text-muted-foreground mt-0.5">Zod Type-Safe</span>
-            </div>
-            <div className="flex flex-col items-center p-2 text-center">
-              <span className="font-heading text-xl sm:text-2xl font-bold text-accent">₹ INR</span>
-              <span className="text-xs text-muted-foreground mt-0.5">Default India Currency</span>
-            </div>
           </div>
         </div>
       </section>
 
+      {/* Main Content Area */}
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 -mt-6 sm:-mt-8 z-20">
+        {/* 4 Skyscanner Quick Action Pills / Cards */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
+          <Link
+            href="/flights/DEL-BOM?trip=oneway"
+            className="group flex items-center gap-3 rounded-xl bg-[#03172e] border border-[#0b335c] p-4 text-white hover:bg-[#082a50] hover:border-[#13497d] transition-all shadow-md"
+          >
+            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-white/10 text-[#38bdf8]">
+              <Sparkles className="h-5 w-5 group-hover:scale-110 transition-transform" />
+            </div>
+            <span className="font-heading text-sm font-bold">Search with AI</span>
+          </Link>
+
+          <Link
+            href="#stays-info"
+            className="group flex items-center gap-3 rounded-xl bg-[#03172e] border border-[#0b335c] p-4 text-white hover:bg-[#082a50] hover:border-[#13497d] transition-all shadow-md"
+          >
+            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-white/10 text-white">
+              <Hotel className="h-5 w-5 group-hover:scale-110 transition-transform" />
+            </div>
+            <span className="font-heading text-sm font-bold">Stays</span>
+          </Link>
+
+          <Link
+            href="#cars-info"
+            className="group flex items-center gap-3 rounded-xl bg-[#03172e] border border-[#0b335c] p-4 text-white hover:bg-[#082a50] hover:border-[#13497d] transition-all shadow-md"
+          >
+            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-white/10 text-white">
+              <Car className="h-5 w-5 group-hover:scale-110 transition-transform" />
+            </div>
+            <span className="font-heading text-sm font-bold">Cars</span>
+          </Link>
+
+          <Link
+            href="#popular-routes"
+            className="group flex items-center gap-3 rounded-xl bg-[#03172e] border border-[#0b335c] p-4 text-white hover:bg-[#082a50] hover:border-[#13497d] transition-all shadow-md"
+          >
+            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-white/10 text-white">
+              <Compass className="h-5 w-5 group-hover:scale-110 transition-transform" />
+            </div>
+            <span className="font-heading text-sm font-bold">Explore everywhere</span>
+          </Link>
+        </div>
+
+        {/* Skyscanner Benchmark Travel Trends Inspiration Banner Card */}
+        <div className="relative mt-10 sm:mt-14 overflow-hidden rounded-2xl sm:rounded-3xl shadow-xl min-h-[380px] sm:min-h-[440px] flex items-center">
+          {/* Background Travel Photography */}
+          <Image
+            src="/images/travel-trends-hero.jpg"
+            alt="Travel inspiration campervan view over coastline"
+            fill
+            priority
+            className="object-cover object-center"
+            sizes="(max-width: 1280px) 100vw, 1280px"
+          />
+
+          {/* Cinematic Contrast Overlay Gradient */}
+          <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/50 to-transparent pointer-events-none" />
+
+          {/* Banner Typography & CTA */}
+          <div className="relative z-10 max-w-xl p-6 sm:p-12 lg:p-16 text-white space-y-4">
+            <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight">
+              The trips everyone&apos;s talking about
+            </h2>
+            <p className="text-sm sm:text-base text-white/90 font-medium leading-relaxed max-w-md">
+              Meet the trends, destinations and ideas shaping 2027
+            </p>
+            <div className="pt-3">
+              <Link
+                href="#popular-routes"
+                className="inline-flex items-center justify-center rounded-full bg-white px-7 py-3 text-sm font-bold text-slate-900 hover:bg-slate-100 transition-colors shadow-lg active:scale-95"
+              >
+                See what&apos;s next
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Popular Routes Section */}
-      <section id="popular-routes" className="border-t border-border bg-background py-16 sm:py-24">
+      <section id="popular-routes" className="bg-background py-16 sm:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
             <div>

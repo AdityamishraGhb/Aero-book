@@ -5,9 +5,15 @@ interface LogoProps {
   className?: string;
   size?: "sm" | "md" | "lg";
   showWordmark?: boolean;
+  variant?: "default" | "light";
 }
 
-export function Logo({ className, size = "md", showWordmark = true }: LogoProps) {
+export function Logo({
+  className,
+  size = "md",
+  showWordmark = true,
+  variant = "default",
+}: LogoProps) {
   const sizeMap = {
     sm: { glyph: "w-7 h-7", text: "text-lg", spacing: "gap-2" },
     md: { glyph: "w-9 h-9", text: "text-2xl", spacing: "gap-2.5" },
@@ -15,6 +21,7 @@ export function Logo({ className, size = "md", showWordmark = true }: LogoProps)
   };
 
   const { glyph, text, spacing } = sizeMap[size];
+  const isLight = variant === "light";
 
   return (
     <Link
@@ -26,10 +33,13 @@ export function Logo({ className, size = "md", showWordmark = true }: LogoProps)
       )}
       aria-label="AeroBook Home"
     >
-      {/* Minimal paper-plane / aerodynamic wing SVG glyph */}
+      {/* Aerodynamic wing SVG glyph */}
       <div
         className={cn(
-          "relative flex items-center justify-center rounded-xl bg-gradient-to-br from-primary/10 via-primary/5 to-accent/10 p-1.5 transition-transform duration-300 group-hover:scale-105",
+          "relative flex items-center justify-center rounded-xl transition-transform duration-300 group-hover:scale-105 p-1.5",
+          isLight
+            ? "bg-white/10 border border-white/15"
+            : "bg-gradient-to-br from-primary/10 via-primary/5 to-accent/10",
           glyph
         )}
       >
@@ -49,8 +59,8 @@ export function Logo({ className, size = "md", showWordmark = true }: LogoProps)
               y2="34"
               gradientUnits="userSpaceOnUse"
             >
-              <stop offset="0%" stopColor="#0E7C7B" />
-              <stop offset="100%" stopColor="#0A6362" />
+              <stop offset="0%" stopColor={isLight ? "#38bdf8" : "#0E7C7B"} />
+              <stop offset="100%" stopColor={isLight ? "#0284c7" : "#0A6362"} />
             </linearGradient>
             <linearGradient
               id="aerobook-accent-grad"
@@ -69,7 +79,7 @@ export function Logo({ className, size = "md", showWordmark = true }: LogoProps)
           <path d="M6 24L34 8L22 34L18 24L6 24Z" fill="url(#aerobook-wing-grad)" />
 
           {/* Underwing facet creating depth and fold */}
-          <path d="M18 24L34 8L20 20L18 24Z" fill="#084E4D" opacity="0.9" />
+          <path d="M18 24L34 8L20 20L18 24Z" fill={isLight ? "#0369a1" : "#084E4D"} opacity="0.9" />
 
           {/* Trailing origami rudder / coral lift accent */}
           <path d="M18 24L22 34L25 25L18 24Z" fill="url(#aerobook-accent-grad)" />
@@ -77,11 +87,11 @@ export function Logo({ className, size = "md", showWordmark = true }: LogoProps)
           {/* Flight path trail line */}
           <path
             d="M4 27C10 27 14 26 17 24"
-            stroke="#0E7C7B"
+            stroke={isLight ? "#38bdf8" : "#0E7C7B"}
             strokeWidth="2"
             strokeLinecap="round"
             strokeDasharray="2 3"
-            opacity="0.6"
+            opacity="0.8"
           />
         </svg>
       </div>
@@ -93,8 +103,12 @@ export function Logo({ className, size = "md", showWordmark = true }: LogoProps)
             text
           )}
         >
-          <span className="text-foreground transition-colors">Aero</span>
-          <span className="text-primary transition-colors">Book</span>
+          <span className={cn("transition-colors", isLight ? "text-white" : "text-foreground")}>
+            Aero
+          </span>
+          <span className={cn("transition-colors", isLight ? "text-[#38bdf8]" : "text-primary")}>
+            Book
+          </span>
           <span className="inline-block w-1.5 h-1.5 ml-0.5 rounded-full bg-accent" />
         </span>
       )}

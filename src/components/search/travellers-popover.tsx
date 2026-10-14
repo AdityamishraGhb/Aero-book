@@ -18,6 +18,8 @@ interface TravellersPopoverProps {
     infants: number;
     cabin: "economy" | "premium-economy" | "business" | "first";
   }) => void;
+  variant?: "default" | "unified";
+  className?: string;
 }
 
 const CABIN_OPTIONS: Array<{
@@ -36,6 +38,8 @@ export function TravellersPopover({
   infants,
   cabin,
   onChange,
+  variant = "default",
+  className,
 }: TravellersPopoverProps) {
   const [open, setOpen] = React.useState(false);
 
@@ -81,11 +85,22 @@ export function TravellersPopover({
   const cabinLabel = CABIN_OPTIONS.find((c) => c.value === cabin)?.label || "Economy";
   const summaryText = `${totalTravellers} ${totalTravellers === 1 ? "Traveller" : "Travellers"}, ${cabinLabel}`;
 
+  const isUnified = variant === "unified";
+
   return (
-    <div className="relative flex-1 min-w-[200px]">
-      <span className="block text-[11px] font-bold uppercase tracking-wider text-muted-foreground mb-1.5">
-        Travellers & Cabin
-      </span>
+    <div
+      className={cn(
+        isUnified
+          ? "relative flex-1 min-w-0 h-full flex flex-col justify-center"
+          : "relative flex-1 min-w-[200px]",
+        className
+      )}
+    >
+      {!isUnified && (
+        <span className="block text-[11px] font-bold uppercase tracking-wider text-muted-foreground mb-1.5">
+          Travellers & Cabin
+        </span>
+      )}
 
       <Popover open={open} onOpenChange={setOpen}>
         <PopoverTrigger asChild>
@@ -93,21 +108,40 @@ export function TravellersPopover({
             type="button"
             aria-label={`Travellers: ${summaryText}`}
             className={cn(
-              "w-full flex items-center justify-between text-left h-14 px-3.5 rounded-xl border bg-card transition-all shadow-xs hover:border-primary/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/20",
-              open ? "border-primary ring-2 ring-primary/20" : "border-border"
+              isUnified
+                ? "w-full h-full text-left px-4 py-2.5 flex flex-col justify-center transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0062E3] hover:bg-slate-50 cursor-pointer select-none"
+                : "w-full flex items-center justify-between text-left h-14 px-3.5 rounded-xl border bg-card transition-all shadow-xs hover:border-primary/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/20",
+              isUnified
+                ? open
+                  ? "bg-slate-50"
+                  : "bg-white"
+                : open
+                  ? "border-primary ring-2 ring-primary/20"
+                  : "border-border"
             )}
           >
-            <div className="flex items-center gap-3 overflow-hidden">
-              <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                <Users className="h-4 w-4" />
-              </div>
-              <div className="truncate">
-                <div className="font-heading text-sm sm:text-base font-bold text-foreground truncate">
-                  {totalTravellers} {totalTravellers === 1 ? "Traveller" : "Travellers"}
+            {isUnified ? (
+              <>
+                <span className="block text-[11px] font-bold uppercase tracking-wider text-slate-500 mb-0.5">
+                  Travellers and cabin class
+                </span>
+                <div className="font-heading text-sm sm:text-base font-bold text-slate-900 truncate">
+                  {totalTravellers} {totalTravellers === 1 ? "Adult" : "Travellers"}, {cabinLabel}
                 </div>
-                <p className="text-[11px] text-muted-foreground truncate">{cabinLabel}</p>
+              </>
+            ) : (
+              <div className="flex items-center gap-3 overflow-hidden">
+                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                  <Users className="h-4 w-4" />
+                </div>
+                <div className="truncate">
+                  <div className="font-heading text-sm sm:text-base font-bold text-foreground truncate">
+                    {totalTravellers} {totalTravellers === 1 ? "Traveller" : "Travellers"}
+                  </div>
+                  <p className="text-[11px] text-muted-foreground truncate">{cabinLabel}</p>
+                </div>
               </div>
-            </div>
+            )}
           </button>
         </PopoverTrigger>
 

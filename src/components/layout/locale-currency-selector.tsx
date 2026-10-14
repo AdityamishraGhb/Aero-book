@@ -63,11 +63,11 @@ export function LocaleCurrencySelector() {
       <Select value={selectedCurrency} onValueChange={handleCurrencyChange}>
         <SelectTrigger
           aria-label="Select currency"
-          className="h-9 w-auto gap-2 border-border/80 bg-background/60 px-2.5 text-xs font-semibold hover:bg-muted/50 rounded-lg"
+          className="h-9 w-auto gap-2 border-white/20 bg-white/10 text-white px-2.5 text-xs font-semibold hover:bg-white/20 rounded-lg"
         >
-          <Globe className="h-3.5 w-3.5 text-muted-foreground" aria-hidden="true" />
+          <Globe className="h-3.5 w-3.5 text-white/80" aria-hidden="true" />
           <SelectValue>
-            <span>
+            <span className="text-white">
               {currentConfig.symbol} {currentConfig.code}
             </span>
           </SelectValue>
