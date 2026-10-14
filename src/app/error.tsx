@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import Link from "next/link";
+import * as Sentry from "@sentry/nextjs";
 import { AlertTriangle, RefreshCw, Home } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -15,8 +16,9 @@ export default function ErrorPage({
   reset?: () => void;
 }) {
   React.useEffect(() => {
-    // Log client error for debugging
+    // Log client error for debugging and report to Sentry
     console.error("AeroBook App Error:", error);
+    Sentry.captureException(error);
   }, [error]);
 
   const handleRetry = () => {

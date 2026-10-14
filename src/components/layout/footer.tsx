@@ -53,8 +53,16 @@ export function Footer() {
             </h3>
             <ul className="space-y-2 text-xs text-muted-foreground">
               <li>
+                <Link
+                  href="/routes"
+                  className="hover:text-primary transition-colors font-semibold text-primary"
+                >
+                  Top 20 Indian Flight Routes
+                </Link>
+              </li>
+              <li>
                 <Link href="/" className="hover:text-primary transition-colors">
-                  Search All Routes
+                  Search All Flights
                 </Link>
               </li>
               <li>

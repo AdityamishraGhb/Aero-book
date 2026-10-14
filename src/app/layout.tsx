@@ -20,6 +20,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://aerobook.flights"),
   title: {
     default: "AeroBook — Fly smarter. Book anywhere.",
     template: "%s | AeroBook",
@@ -27,9 +28,30 @@ export const metadata: Metadata = {
   description:
     "AeroBook is a modern flight search and metasearch platform. Compare live routes, find best value airfares, and experience seamless booking.",
   applicationName: "AeroBook",
-  keywords: ["flight search", "metasearch", "airfare comparison", "airline tickets", "AeroBook"],
+  keywords: [
+    "flight search",
+    "metasearch",
+    "airfare comparison",
+    "airline tickets",
+    "cheap flights India",
+    "AeroBook",
+  ],
   authors: [{ name: "AeroBook Team" }],
   creator: "AeroBook",
+  alternates: {
+    canonical: "./",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
   openGraph: {
     type: "website",
     locale: "en_IN",
@@ -63,9 +85,17 @@ export default function RootLayout({
       className={`${plusJakartaSans.variable} ${inter.variable}`}
     >
       <body className="flex min-h-screen flex-col bg-background text-foreground font-sans antialiased selection:bg-primary/20 selection:text-primary">
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-primary focus:text-primary-foreground focus:rounded-md focus:shadow-md focus:outline-none focus:ring-2 focus:ring-ring"
+        >
+          Skip to main content
+        </a>
         <Providers>
           <Header />
-          <main className="flex-1 flex flex-col">{children}</main>
+          <main id="main-content" className="flex-1 flex flex-col" tabIndex={-1}>
+            {children}
+          </main>
           <Footer />
         </Providers>
       </body>
