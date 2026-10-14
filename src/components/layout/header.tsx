@@ -62,24 +62,27 @@ export function Header() {
           </div>
 
           {/* Saved Trips / Shortlist Icon */}
-          <button
-            type="button"
+          <Link
+            href="/account?tab=saved"
             aria-label="Saved flights"
             title="Saved flights"
             className="relative flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground hover:bg-muted hover:text-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
           >
             <Heart className="h-4 w-4" />
             <span className="sr-only">Saved flights</span>
-          </button>
+          </Link>
 
-          {/* Login / Sign In Button */}
+          {/* Login / Account Button */}
           <Button
             variant="outline"
             size="sm"
+            asChild
             className="hidden sm:inline-flex h-9 px-3.5 text-xs font-semibold gap-1.5 border-border hover:border-primary/50 hover:bg-card shadow-xs"
           >
-            <User className="h-3.5 w-3.5 text-primary" />
-            <span>Sign In</span>
+            <Link href="/account">
+              <User className="h-3.5 w-3.5 text-primary" />
+              <span>Account</span>
+            </Link>
           </Button>
 
           {/* Mobile Drawer Navigation */}

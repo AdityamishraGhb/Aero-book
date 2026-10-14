@@ -264,7 +264,31 @@ export default function BookingFlowPage() {
       // Short delay for realistic reservation simulation
       await new Promise((resolve) => setTimeout(resolve, 600));
 
-      completeBooking();
+      const confirmed = completeBooking();
+
+      // Persist to database/account
+      fetch("/api/user/bookings", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          bookingReference: confirmed.bookingReference,
+          pnr: confirmed.pnr,
+          carrierCode: confirmed.offer.slices[0].segments[0].carrierCode,
+          carrierName: confirmed.offer.slices[0].segments[0].carrierName,
+          flightNumber: confirmed.offer.slices[0].segments[0].flightNumber,
+          origin: confirmed.offer.slices[0].departureAirport,
+          destination: confirmed.offer.slices[0].arrivalAirport,
+          departureTime: confirmed.offer.slices[0].departureTime,
+          arrivalTime: confirmed.offer.slices[0].arrivalTime,
+          passengers: confirmed.passengers,
+          contactEmail: confirmed.contact.email,
+          contactPhone: confirmed.contact.phone,
+          totalAmount: confirmed.offer.price.amount,
+          currency: confirmed.offer.price.currency,
+          status: "confirmed",
+        }),
+      }).catch(() => {});
+
       router.push("/booking/confirmation");
     } catch (err) {
       console.error("Booking completion failed:", err);

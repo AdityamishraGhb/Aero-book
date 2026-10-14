@@ -13,9 +13,17 @@ const envSchema = z.object({
   UPSTASH_REDIS_REST_TOKEN: z.string().optional().default(""),
   DATABASE_URL: z.string().optional().default(""),
   AUTH_SECRET: z.string().optional().default(""),
+  AUTH_GOOGLE_ID: z.string().optional().default(""),
+  AUTH_GOOGLE_SECRET: z.string().optional().default(""),
+  AUTH_URL: z.string().optional().default("http://localhost:3000"),
+  AUTH_TRUST_HOST: z.string().optional().default("true"),
   SENTRY_DSN: z.string().url().optional().or(z.literal("")),
   NEXT_PUBLIC_SITE_URL: z.string().url().default("http://localhost:3000"),
 });
+
+if (!process.env.AUTH_TRUST_HOST) {
+  process.env.AUTH_TRUST_HOST = "true";
+}
 
 export type Env = z.infer<typeof envSchema>;
 
@@ -28,6 +36,10 @@ export const env: Env = envSchema.parse({
   UPSTASH_REDIS_REST_TOKEN: process.env.UPSTASH_REDIS_REST_TOKEN || "",
   DATABASE_URL: process.env.DATABASE_URL || "",
   AUTH_SECRET: process.env.AUTH_SECRET || "",
+  AUTH_GOOGLE_ID: process.env.AUTH_GOOGLE_ID || "",
+  AUTH_GOOGLE_SECRET: process.env.AUTH_GOOGLE_SECRET || "",
+  AUTH_URL: process.env.AUTH_URL || "http://localhost:3000",
+  AUTH_TRUST_HOST: process.env.AUTH_TRUST_HOST || "true",
   SENTRY_DSN: process.env.SENTRY_DSN || "",
   NEXT_PUBLIC_SITE_URL: process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000",
 });

@@ -10,7 +10,7 @@ describe("Header component", () => {
 
   it("renders active Flights tab", () => {
     render(<Header />);
-    const flightsLink = screen.getByRole("link", { name: /flights/i });
+    const flightsLink = screen.getByRole("link", { name: /^flights$/i });
     expect(flightsLink).toBeInTheDocument();
     expect(flightsLink).toHaveAttribute("aria-current", "page");
   });
@@ -27,9 +27,9 @@ describe("Header component", () => {
     expect(soonBadges.length).toBeGreaterThanOrEqual(2);
   });
 
-  it("renders Saved Flights icon button and Sign In button", () => {
+  it("renders Saved Flights link and Account button", () => {
     render(<Header />);
-    expect(screen.getByRole("button", { name: /saved flights/i })).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: /sign in/i })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /saved flights/i })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /account/i })).toBeInTheDocument();
   });
 });
