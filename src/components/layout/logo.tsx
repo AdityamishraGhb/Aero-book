@@ -36,12 +36,13 @@ export function Logo({
       aria-label="AeroBook Home"
     >
       <div className="relative inline-flex items-center">
-        {/* Exact Official AeroBook Logo as Uploaded by Client */}
+        {/* Exact Official AeroBook Logo as Uploaded by Client (Ultra-Sharp Vector SVG) */}
         <Image
-          src={isLight ? "/brand/logo-dark.png" : "/brand/logo-light.png"}
+          src={isLight ? "/brand/aerobook-logo-dark.svg" : "/brand/aerobook-logo-light.svg"}
           alt="AeroBook"
           width={width}
           height={height}
+          unoptimized
           priority
           className={cn("object-contain transition-transform duration-300 group-hover:scale-102", imgClass)}
         />

@@ -11,15 +11,16 @@ export default function Loading() {
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-[#D4A017]/10 blur-3xl pointer-events-none" />
 
       <div className="relative z-10 flex flex-col items-center gap-6 max-w-sm text-center">
-        {/* Exact Official Brand Logo */}
+        {/* Exact Official Brand Logo (Ultra-Sharp Vector SVG) */}
         <div className="transition-transform duration-500 hover:scale-105">
           <Image
-            src="/brand/logo-dark.png"
+            src="/brand/aerobook-logo-dark.svg"
             alt="AeroBook"
             width={220}
             height={52}
+            unoptimized
             priority
-            className="h-11 sm:h-12 w-auto object-contain drop-shadow-md"
+            className="h-10 sm:h-11 w-auto object-contain drop-shadow-md"
           />
         </div>
 
