@@ -1,10 +1,24 @@
 import type { Metadata, Viewport } from "next";
-import { Plus_Jakarta_Sans, Inter } from "next/font/google";
+import { Montserrat, Poppins, Plus_Jakarta_Sans, Inter } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { Providers } from "@/components/providers";
 import { SourceBanner } from "@/components/common/source-banner";
+
+const montserrat = Montserrat({
+  variable: "--font-montserrat",
+  subsets: ["latin"],
+  display: "swap",
+  weight: ["500", "600", "700", "800"],
+});
+
+const poppins = Poppins({
+  variable: "--font-poppins",
+  subsets: ["latin"],
+  display: "swap",
+  weight: ["400", "500", "600", "700"],
+});
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   variable: "--font-plus-jakarta",
@@ -23,11 +37,11 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://aerobook.flights"),
   title: {
-    default: "AeroBook — Fly smarter. Book anywhere.",
+    default: "AeroBook — Your Next Journey, Simplified.",
     template: "%s | AeroBook",
   },
   description:
-    "AeroBook is a modern flight search and metasearch platform. Compare live routes, find best value airfares, and experience seamless booking.",
+    "Smarter searches. Better deals. AeroBook is a modern flight search and metasearch platform. Compare live routes, find best value airfares, and experience seamless booking.",
   applicationName: "AeroBook",
   keywords: [
     "flight search",
@@ -63,13 +77,13 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "AeroBook — Fly smarter. Book anywhere.",
-    description: "Compare live routes, find best value airfares, and experience seamless booking.",
+    title: "AeroBook — Your Next Journey, Simplified.",
+    description: "Smarter searches. Better deals. Compare live routes, find best value airfares, and experience seamless booking.",
   },
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0E7C7B",
+  themeColor: "#0B1F2D",
   width: "device-width",
   initialScale: 1,
 };
@@ -83,9 +97,9 @@ export default function RootLayout({
     <html
       lang="en"
       data-scroll-behavior="smooth"
-      className={`${plusJakartaSans.variable} ${inter.variable}`}
+      className={`${montserrat.variable} ${poppins.variable} ${plusJakartaSans.variable} ${inter.variable}`}
     >
-      <body className="flex min-h-screen flex-col bg-background text-foreground font-sans antialiased selection:bg-primary/20 selection:text-primary">
+      <body className="flex min-h-screen flex-col bg-background text-foreground font-sans antialiased selection:bg-[#D4A017]/30 selection:text-[#0B1F2D]">
         <a
           href="#main-content"
           className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-primary focus:text-primary-foreground focus:rounded-md focus:shadow-md focus:outline-none focus:ring-2 focus:ring-ring"

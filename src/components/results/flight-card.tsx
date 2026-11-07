@@ -128,14 +128,14 @@ export function FlightCard({
     <div
       data-slot="flight-card"
       className={cn(
-        "group relative rounded-2xl border bg-card p-5 sm:p-6 shadow-xs transition-all hover:border-primary/50 hover:shadow-soft-md",
-        isBestOffer ? "border-accent/40 bg-accent/[0.01]" : "border-border"
+        "group relative rounded-2xl border bg-card p-5 sm:p-6 shadow-xs transition-all hover:border-[#D4A017]/60 hover:shadow-soft-md",
+        isBestOffer ? "border-[#D4A017]/60 bg-[#D4A017]/[0.02]" : "border-border"
       )}
     >
       {/* Top Badges: Best / Cheapest / Fastest */}
       <div className="flex flex-wrap items-center gap-2 mb-3">
         {isBestOffer && (
-          <Badge variant="accent" className="gap-1 text-[11px] font-bold shadow-xs">
+          <Badge className="gap-1 text-[11px] font-bold shadow-xs bg-[#D4A017] text-[#0B1F2D] hover:bg-[#B88B13] border-0">
             <Sparkles className="h-3 w-3" />
             <span>Best Value • Score {offer.scoring.bestScore}/10</span>
           </Badge>
@@ -147,7 +147,7 @@ export function FlightCard({
           </Badge>
         )}
         {isFastestOffer && (
-          <Badge variant="default" className="gap-1 text-[11px] font-bold">
+          <Badge variant="default" className="gap-1 text-[11px] font-bold bg-[#0B1F2D] text-white">
             <span>Fastest Option</span>
           </Badge>
         )}
@@ -166,17 +166,17 @@ export function FlightCard({
         {/* Price column & CTA */}
         <div className="flex items-center justify-between lg:flex-col lg:items-end lg:justify-center gap-4 border-t lg:border-t-0 lg:border-l border-border/80 pt-4 lg:pt-0 lg:pl-6 shrink-0 min-w-[170px]">
           <div className="lg:text-right">
-            <div className="font-heading text-2xl sm:text-3xl font-extrabold text-foreground">
+            <div className="font-heading text-2xl sm:text-3xl font-extrabold text-[#0B1F2D]">
               {formatPrice(offer.price.amount)}
             </div>
-            <p className="text-[11px] text-muted-foreground">Total incl. taxes & fees</p>
+            <p className="text-[11px] text-[#6B7280]">Total incl. taxes & fees</p>
           </div>
 
           <Button
-            variant="accent"
+            variant="gold"
             size="default"
             onClick={() => onSelect?.(offer)}
-            className="h-10 px-5 text-xs font-bold gap-1.5 shadow-xs group-hover:scale-102 transition-transform"
+            className="h-10 px-5 text-xs font-bold gap-1.5 shadow-xs group-hover:scale-102 transition-transform cursor-pointer"
           >
             <span>Select Flight</span>
             <ArrowRight className="h-3.5 w-3.5" />

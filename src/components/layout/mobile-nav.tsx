@@ -124,8 +124,8 @@ export function MobileNav() {
         <div className="pt-6 border-t border-border/80 space-y-4">
           <Button
             asChild
-            variant="default"
-            className="w-full justify-center gap-2 h-10 font-bold bg-[#0062E3] text-white hover:bg-[#0050ba]"
+            variant="gold"
+            className="w-full justify-center gap-2 h-10 font-bold cursor-pointer"
           >
             <Link href="/auth/signin?mode=register" onClick={() => setOpen(false)}>
               <User className="h-4 w-4" />
@@ -139,7 +139,7 @@ export function MobileNav() {
           </div>
 
           <p className="text-[11px] text-muted-foreground text-center">
-            AeroBook • Fly smarter. Book anywhere.
+            AeroBook • Your Next Journey, Simplified.
           </p>
         </div>
       </SheetContent>

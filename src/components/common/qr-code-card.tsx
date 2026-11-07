@@ -34,7 +34,7 @@ export function QrCodeCard({
       width: 480,
       margin: 2,
       color: {
-        dark: "#05203c", // Dark AeroBook Navy
+        dark: "#0B1F2D", // Official Brand Navy
         light: "#ffffff",
       },
       errorCorrectionLevel: "H",

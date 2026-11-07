@@ -43,16 +43,16 @@ export default function MobilePosterPage() {
           {/* Header */}
           <div className="text-center space-y-3 border-b border-slate-200 pb-6">
             <div className="flex justify-center">
-              <Logo size="lg" />
+              <Logo size="lg" withTagline={true} />
             </div>
-            <div className="inline-flex items-center gap-1.5 rounded-full bg-[#0062E3]/10 px-3.5 py-1 text-xs font-bold text-[#0062E3]">
-              <Sparkles className="h-3.5 w-3.5" />
+            <div className="inline-flex items-center gap-1.5 rounded-full bg-[#D4A017]/15 px-3.5 py-1 text-xs font-bold text-[#0B1F2D] border border-[#D4A017]/40">
+              <Sparkles className="h-3.5 w-3.5 text-[#D4A017]" />
               <span>Official Mobile Launch</span>
             </div>
-            <h1 className="font-heading text-2xl sm:text-4xl font-extrabold tracking-tight text-[#05203c]">
+            <h1 className="font-heading text-2xl sm:text-4xl font-extrabold tracking-tight text-[#0B1F2D]">
               We&apos;re excited to officially launch the AeroBook Mobile Web App!
             </h1>
-            <p className="text-sm sm:text-base text-slate-600 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-sm sm:text-base text-[#6B7280] max-w-2xl mx-auto leading-relaxed">
               Scan the QR code below using your mobile phone camera to search flights, compare airfares in real-time, and manage bookings on the go.
             </p>
           </div>
@@ -62,14 +62,14 @@ export default function MobilePosterPage() {
             <QrCodeCard
               source="01"
               showPosterNotice={false}
-              className="border-0 shadow-none bg-slate-50 max-w-lg"
+              className="border-0 shadow-none bg-[#F6F7FB] max-w-lg"
             />
           </div>
 
           {/* Instructions for Use (matches sample document) */}
-          <div className="rounded-2xl border border-slate-200 bg-slate-50/60 p-6 sm:p-8 space-y-4 text-xs sm:text-sm text-slate-700">
-            <h2 className="font-heading text-base sm:text-lg font-bold text-[#05203c] flex items-center gap-2">
-              <Smartphone className="h-5 w-5 text-[#0062E3]" />
+          <div className="rounded-2xl border border-slate-200 bg-[#F6F7FB]/70 p-6 sm:p-8 space-y-4 text-xs sm:text-sm text-slate-700">
+            <h2 className="font-heading text-base sm:text-lg font-bold text-[#0B1F2D] flex items-center gap-2">
+              <Smartphone className="h-5 w-5 text-[#D4A017]" />
               <span>Instructions for Use</span>
             </h2>
 
@@ -77,7 +77,7 @@ export default function MobilePosterPage() {
               <strong>AeroBook is designed to work on a mobile device through your smartphone browser.</strong> The web app delivers instant flight search with live seat availability, transparent baggage rules, and multi-currency conversions.
             </p>
 
-            <div className="p-3.5 rounded-xl bg-blue-50 border border-blue-100 text-blue-900 font-medium">
+            <div className="p-3.5 rounded-xl bg-amber-50/70 border border-[#D4A017]/30 text-[#0B1F2D] font-medium">
               💡 <strong>There is no need to install anything on your device.</strong> No App Store or Google Play Store download is required. Simply scan the QR code to launch.
             </div>
 

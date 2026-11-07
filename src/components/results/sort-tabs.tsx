@@ -28,7 +28,7 @@ export function SortTabs({
       label: "Best",
       subtext: bestScore ? `Score: ${bestScore}/10` : "Best value ratio",
       icon: Sparkles,
-      iconColor: "text-accent",
+      iconColor: "text-[#D4A017]",
     },
     {
       id: "cheapest" as const,
@@ -60,22 +60,22 @@ export function SortTabs({
             aria-selected={isActive}
             onClick={() => onSortChange(tab.id)}
             className={cn(
-              "flex flex-col items-center justify-center py-2.5 px-2 rounded-xl text-center transition-all select-none",
+              "flex flex-col items-center justify-center py-2.5 px-2 rounded-xl text-center transition-all select-none cursor-pointer",
               isActive
-                ? "bg-primary/10 border border-primary/30 text-foreground shadow-xs font-bold"
+                ? "bg-[#0B1F2D] text-white shadow-xs font-bold"
                 : "hover:bg-muted/60 text-muted-foreground hover:text-foreground"
             )}
           >
             <div className="flex items-center gap-1.5 mb-0.5">
-              <Icon className={cn("h-4 w-4", tab.iconColor)} />
-              <span className="font-heading text-xs sm:text-sm font-bold text-foreground">
+              <Icon className={cn("h-4 w-4", isActive ? "text-[#D4A017]" : tab.iconColor)} />
+              <span className={cn("font-heading text-xs sm:text-sm font-bold", isActive ? "text-white" : "text-foreground")}>
                 {tab.label}
               </span>
             </div>
             <span
               className={cn(
                 "text-[11px] truncate max-w-full font-medium",
-                isActive ? "text-primary font-semibold" : "text-muted-foreground"
+                isActive ? "text-[#D4A017] font-semibold" : "text-muted-foreground"
               )}
             >
               {tab.subtext}

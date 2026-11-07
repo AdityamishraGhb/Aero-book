@@ -114,70 +114,54 @@ export default function UIDesignSystemPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
-            {/* Ink */}
+          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
+            {/* Primary Navy */}
             <div className="rounded-xl border border-border bg-card p-4 shadow-xs">
-              <div className="h-16 w-full rounded-lg bg-[var(--ink)] shadow-inner" />
+              <div className="h-16 w-full rounded-lg bg-[#0B1F2D] shadow-inner" />
               <div className="mt-3">
-                <span className="font-heading text-xs font-bold text-foreground">Ink</span>
-                <p className="text-[11px] text-muted-foreground font-mono">#0B1F2A</p>
-                <p className="text-[11px] text-muted-foreground mt-0.5">Core high-contrast ink</p>
+                <span className="font-heading text-xs font-bold text-foreground">Primary (Navy)</span>
+                <p className="text-[11px] text-muted-foreground font-mono">#0B1F2D</p>
+                <p className="text-[11px] text-muted-foreground mt-0.5">Trust | Stability | Professional</p>
               </div>
             </div>
 
-            {/* Surface */}
+            {/* Secondary Gold */}
             <div className="rounded-xl border border-border bg-card p-4 shadow-xs">
-              <div className="h-16 w-full rounded-lg bg-[var(--surface)] border border-border shadow-inner" />
+              <div className="h-16 w-full rounded-lg bg-[#D4A017] shadow-inner" />
               <div className="mt-3">
-                <span className="font-heading text-xs font-bold text-foreground">Surface</span>
-                <p className="text-[11px] text-muted-foreground font-mono">#F7F5F2</p>
-                <p className="text-[11px] text-muted-foreground mt-0.5">Warm canvas background</p>
+                <span className="font-heading text-xs font-bold text-foreground">Secondary (Gold)</span>
+                <p className="text-[11px] text-muted-foreground font-mono">#D4A017</p>
+                <p className="text-[11px] text-muted-foreground mt-0.5">Growth | Success | Travel</p>
               </div>
             </div>
 
-            {/* Primary Teal */}
+            {/* Accent Gray */}
             <div className="rounded-xl border border-border bg-card p-4 shadow-xs">
-              <div className="h-16 w-full rounded-lg bg-[var(--primary)] shadow-inner" />
+              <div className="h-16 w-full rounded-lg bg-[#6B7280] shadow-inner" />
               <div className="mt-3">
-                <span className="font-heading text-xs font-bold text-foreground">Primary Teal</span>
-                <p className="text-[11px] text-muted-foreground font-mono">#0E7C7B</p>
-                <p className="text-[11px] text-muted-foreground mt-0.5">Brand anchor & links</p>
+                <span className="font-heading text-xs font-bold text-foreground">Accent (Gray)</span>
+                <p className="text-[11px] text-muted-foreground font-mono">#6B7280</p>
+                <p className="text-[11px] text-muted-foreground mt-0.5">Balance | Modern | Clean</p>
               </div>
             </div>
 
-            {/* Accent Coral */}
+            {/* Light Background */}
             <div className="rounded-xl border border-border bg-card p-4 shadow-xs">
-              <div className="h-16 w-full rounded-lg bg-[var(--accent)] shadow-inner" />
+              <div className="h-16 w-full rounded-lg bg-[#F6F7FB] border border-border shadow-inner" />
               <div className="mt-3">
-                <span className="font-heading text-xs font-bold text-foreground">Accent Coral</span>
-                <p className="text-[11px] text-muted-foreground font-mono">#FF6B4A</p>
-                <p className="text-[11px] text-muted-foreground mt-0.5">
-                  Conversion & booking CTAs
-                </p>
+                <span className="font-heading text-xs font-bold text-foreground">Light Background</span>
+                <p className="text-[11px] text-muted-foreground font-mono">#F6F7FB</p>
+                <p className="text-[11px] text-muted-foreground mt-0.5">Clean | Minimal | Spacious</p>
               </div>
             </div>
 
-            {/* Muted Sand */}
+            {/* Dark Text */}
             <div className="rounded-xl border border-border bg-card p-4 shadow-xs">
-              <div className="h-16 w-full rounded-lg bg-[var(--muted)] border border-border shadow-inner" />
+              <div className="h-16 w-full rounded-lg bg-[#1F2937] shadow-inner" />
               <div className="mt-3">
-                <span className="font-heading text-xs font-bold text-foreground">
-                  Muted / Secondary
-                </span>
-                <p className="text-[11px] text-muted-foreground font-mono">#EEEBE6</p>
-                <p className="text-[11px] text-muted-foreground mt-0.5">Subtle card fills & tags</p>
-              </div>
-            </div>
-
-            {/* Border Subtle */}
-            <div className="rounded-xl border border-border bg-card p-4 shadow-xs">
-              <div className="h-16 w-full rounded-lg bg-[var(--border)] shadow-inner" />
-              <div className="mt-3">
-                <span className="font-heading text-xs font-bold text-foreground">
-                  Border Subtle
-                </span>
-                <p className="text-[11px] text-muted-foreground font-mono">#E4E1DC</p>
-                <p className="text-[11px] text-muted-foreground mt-0.5">Divider lines & inputs</p>
+                <span className="font-heading text-xs font-bold text-foreground">Text (Dark)</span>
+                <p className="text-[11px] text-muted-foreground font-mono">#1F2937</p>
+                <p className="text-[11px] text-muted-foreground mt-0.5">Readable | Clear | Strong</p>
               </div>
             </div>
           </div>

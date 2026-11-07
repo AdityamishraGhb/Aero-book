@@ -221,7 +221,7 @@ function AuthPageContent() {
         {/* Header with Logo */}
         <div className="text-center space-y-2">
           <div className="flex justify-center mb-2">
-            <Logo size="lg" />
+            <Logo size="lg" withTagline={true} />
           </div>
           <h1 className="font-heading text-2xl sm:text-3xl font-extrabold text-foreground">
             {mode === "register" ? "Create your AeroBook Account" : "Sign in to AeroBook"}
@@ -427,7 +427,7 @@ function AuthPageContent() {
                 {/* Submit Register CTA */}
                 <Button
                   type="submit"
-                  variant="accent"
+                  variant="gold"
                   disabled={isLoading}
                   className="w-full h-11 text-xs font-bold gap-2 mt-2 shadow-xs cursor-pointer"
                 >
@@ -503,7 +503,7 @@ function AuthPageContent() {
 
                 <Button
                   type="submit"
-                  variant="accent"
+                  variant="gold"
                   disabled={isLoading}
                   className="w-full h-11 text-xs font-bold gap-2 mt-2 shadow-xs cursor-pointer"
                 >

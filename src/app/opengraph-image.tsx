@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "AeroBook — Fly smarter. Book anywhere.";
+export const alt = "AeroBook — Your Next Journey, Simplified.";
 export const size = {
   width: 1200,
   height: 630,
@@ -17,9 +17,9 @@ export default async function Image() {
         flexDirection: "column",
         alignItems: "flex-start",
         justifyContent: "space-between",
-        backgroundColor: "#0B1515",
+        backgroundColor: "#0B1F2D",
         backgroundImage:
-          "radial-gradient(circle at 80% 20%, rgba(14, 124, 123, 0.35) 0%, transparent 60%), radial-gradient(circle at 20% 80%, rgba(247, 160, 114, 0.25) 0%, transparent 60%)",
+          "radial-gradient(circle at 80% 20%, rgba(212, 160, 23, 0.3) 0%, transparent 60%), radial-gradient(circle at 20% 80%, rgba(11, 31, 45, 0.9) 0%, transparent 60%)",
         padding: "70px 80px",
         fontFamily: "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
         color: "#FFFFFF",
@@ -40,11 +40,11 @@ export default async function Image() {
               width: "56px",
               height: "56px",
               borderRadius: "16px",
-              backgroundColor: "#0E7C7B",
+              backgroundColor: "#D4A017",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              boxShadow: "0 10px 25px rgba(14, 124, 123, 0.4)",
+              boxShadow: "0 10px 25px rgba(212, 160, 23, 0.4)",
             }}
           >
             <svg
@@ -52,7 +52,7 @@ export default async function Image() {
               height="32"
               viewBox="0 0 24 24"
               fill="none"
-              stroke="#FFFFFF"
+              stroke="#0B1F2D"
               strokeWidth="2.5"
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -60,9 +60,10 @@ export default async function Image() {
               <path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z" />
             </svg>
           </div>
-          <span style={{ fontSize: "36px", fontWeight: "800", letterSpacing: "-1px" }}>
-            AeroBook
-          </span>
+          <div style={{ display: "flex", alignItems: "baseline", fontSize: "36px", fontWeight: "800", letterSpacing: "-1px" }}>
+            <span>Aero</span>
+            <span style={{ color: "#D4A017" }}>Book</span>
+          </div>
         </div>
 
         <div
@@ -72,14 +73,14 @@ export default async function Image() {
             gap: "8px",
             padding: "10px 22px",
             borderRadius: "999px",
-            backgroundColor: "rgba(14, 124, 123, 0.2)",
-            border: "1px solid rgba(14, 124, 123, 0.5)",
-            color: "#38C5B9",
+            backgroundColor: "rgba(212, 160, 23, 0.15)",
+            border: "1px solid rgba(212, 160, 23, 0.4)",
+            color: "#D4A017",
             fontSize: "16px",
             fontWeight: "700",
           }}
         >
-          ✈ Real-Time Flight Metasearch
+          ✈ FLIGHTS • HOTELS • MORE
         </div>
       </div>
 
@@ -87,20 +88,20 @@ export default async function Image() {
       <div style={{ display: "flex", flexDirection: "column", gap: "20px", maxWidth: "900px" }}>
         <div
           style={{
+            display: "flex",
+            alignItems: "center",
             fontSize: "64px",
             fontWeight: "900",
             lineHeight: "1.1",
             letterSpacing: "-2px",
-            backgroundImage: "linear-gradient(135deg, #FFFFFF 40%, #A2E3C4 100%)",
-            backgroundClip: "text",
-            color: "transparent",
+            color: "#FFFFFF",
           }}
         >
-          Fly smarter. Compare & Book anywhere.
+          <span>Your Next Journey,&nbsp;</span>
+          <span style={{ color: "#D4A017" }}>Simplified.</span>
         </div>
-        <div style={{ fontSize: "24px", color: "#9CB3B0", lineHeight: "1.4", fontWeight: "400" }}>
-          Search over 150+ major airports across India and worldwide. Unbiased fares, zero hidden
-          fees, and instant transparent booking.
+        <div style={{ display: "flex", fontSize: "24px", color: "#6B7280", lineHeight: "1.4", fontWeight: "400" }}>
+          Smarter searches. Better deals. Unbiased airfares, live multi-currency, zero hidden fees, and instant transparent booking.
         </div>
       </div>
 

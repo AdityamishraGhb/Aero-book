@@ -115,15 +115,20 @@ export default function HomePage() {
 
   return (
     <div className="flex flex-col flex-1 w-full">
-      {/* Skyscanner Benchmark Hero Section with Midnight Navy Background */}
-      <section className="relative overflow-hidden bg-[#05203c] pt-10 pb-16 sm:pt-14 sm:pb-20 text-white">
+      {/* Hero Section with Official Midnight Navy Background (#0B1F2D) */}
+      <section className="relative overflow-hidden bg-[#0B1F2D] pt-10 pb-16 sm:pt-14 sm:pb-20 text-white border-b border-[#163247]">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          {/* Skyscanner Benchmark Headline */}
+          {/* Brand Headline from Style Guide */}
           <div className="mb-6 sm:mb-8 text-left">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-[#D4A017]/30 text-xs font-semibold text-[#D4A017] mb-3">
+              <span>SMARTER SEARCHES. BETTER DEALS.</span>
+            </div>
             <h1 className="font-heading text-3xl font-extrabold tracking-tight text-white sm:text-4xl lg:text-5xl leading-tight">
-              Millions of cheap flights. One simple search.
+              Your Next Journey, <span className="text-[#D4A017]">Simplified.</span>
             </h1>
-            <h2 className="sr-only">Fly smarter. Book anywhere.</h2>
+            <p className="mt-2 text-sm sm:text-base text-white/80 max-w-2xl font-sans">
+              Millions of cheap flights, live transparent airfares, and direct airline bookings in one unified search.
+            </p>
           </div>
 
           {/* Unified Horizontal Search Form */}
@@ -135,13 +140,13 @@ export default function HomePage() {
 
       {/* Main Content Area */}
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 -mt-6 sm:-mt-8 z-20">
-        {/* 4 Skyscanner Quick Action Pills / Cards */}
+        {/* 4 Quick Action Pills / Cards Styled with Brand Tokens */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
           <Link
             href="/flights/DEL-BOM?trip=oneway"
-            className="group flex items-center gap-3 rounded-xl bg-[#03172e] border border-[#0b335c] p-4 text-white hover:bg-[#082a50] hover:border-[#13497d] transition-all shadow-md"
+            className="group flex items-center gap-3 rounded-xl bg-[#0B1F2D] border border-[#163247] p-4 text-white hover:bg-[#163247] hover:border-[#D4A017]/60 transition-all shadow-md"
           >
-            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-white/10 text-[#38bdf8]">
+            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[#D4A017]/20 text-[#D4A017]">
               <Sparkles className="h-5 w-5 group-hover:scale-110 transition-transform" />
             </div>
             <span className="font-heading text-sm font-bold">Search with AI</span>
@@ -149,7 +154,7 @@ export default function HomePage() {
 
           <Link
             href="#stays-info"
-            className="group flex items-center gap-3 rounded-xl bg-[#03172e] border border-[#0b335c] p-4 text-white hover:bg-[#082a50] hover:border-[#13497d] transition-all shadow-md"
+            className="group flex items-center gap-3 rounded-xl bg-[#0B1F2D] border border-[#163247] p-4 text-white hover:bg-[#163247] hover:border-[#D4A017]/60 transition-all shadow-md"
           >
             <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-white/10 text-white">
               <Hotel className="h-5 w-5 group-hover:scale-110 transition-transform" />
@@ -159,7 +164,7 @@ export default function HomePage() {
 
           <Link
             href="#cars-info"
-            className="group flex items-center gap-3 rounded-xl bg-[#03172e] border border-[#0b335c] p-4 text-white hover:bg-[#082a50] hover:border-[#13497d] transition-all shadow-md"
+            className="group flex items-center gap-3 rounded-xl bg-[#0B1F2D] border border-[#163247] p-4 text-white hover:bg-[#163247] hover:border-[#D4A017]/60 transition-all shadow-md"
           >
             <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-white/10 text-white">
               <Car className="h-5 w-5 group-hover:scale-110 transition-transform" />
@@ -169,7 +174,7 @@ export default function HomePage() {
 
           <Link
             href="#popular-routes"
-            className="group flex items-center gap-3 rounded-xl bg-[#03172e] border border-[#0b335c] p-4 text-white hover:bg-[#082a50] hover:border-[#13497d] transition-all shadow-md"
+            className="group flex items-center gap-3 rounded-xl bg-[#0B1F2D] border border-[#163247] p-4 text-white hover:bg-[#163247] hover:border-[#D4A017]/60 transition-all shadow-md"
           >
             <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-white/10 text-white">
               <Compass className="h-5 w-5 group-hover:scale-110 transition-transform" />

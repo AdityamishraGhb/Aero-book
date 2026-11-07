@@ -8,7 +8,7 @@ import { MobileQrModal } from "./mobile-qr-modal";
 
 export function Header() {
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-[#0b335c] bg-[#05203c] text-white shadow-xs">
+    <header className="sticky top-0 z-40 w-full border-b border-[#163247] bg-[#0B1F2D] text-white shadow-xs">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Brand Logo & Product Mode Tabs */}
         <div className="flex items-center gap-6 lg:gap-8">
@@ -16,10 +16,10 @@ export function Header() {
 
           {/* Desktop Navigation Tabs matching Skyscanner header */}
           <nav aria-label="Primary navigation" className="hidden md:flex items-center gap-2">
-            {/* Active Flights Tab */}
+            {/* Active Flights Tab with Brand Gold */}
             <Link
               href="/"
-              className="inline-flex items-center gap-2 rounded-full bg-[#0062E3] px-4 py-1.5 text-sm font-semibold text-white shadow-xs transition-colors hover:bg-[#0052bd]"
+              className="inline-flex items-center gap-2 rounded-full bg-[#D4A017] px-4 py-1.5 text-sm font-bold text-[#0B1F2D] shadow-xs transition-colors hover:bg-[#B88B13]"
               aria-current="page"
             >
               <Plane className="h-4 w-4" />
@@ -89,10 +89,10 @@ export function Header() {
           <Button
             asChild
             size="sm"
-            className="hidden sm:inline-flex h-9 px-4 text-xs font-bold gap-1.5 bg-white text-[#05203c] hover:bg-white/90 border-0 rounded-lg shadow-xs cursor-pointer"
+            className="hidden sm:inline-flex h-9 px-4 text-xs font-bold gap-1.5 bg-white text-[#0B1F2D] hover:bg-white/90 border-0 rounded-lg shadow-xs cursor-pointer"
           >
             <Link href="/auth/signin?mode=register" aria-label="Account / Register">
-              <User className="h-3.5 w-3.5 text-[#05203c]" />
+              <User className="h-3.5 w-3.5 text-[#0B1F2D]" />
               <span>Register / Login</span>
             </Link>
           </Button>

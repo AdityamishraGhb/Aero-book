@@ -6,6 +6,7 @@ interface LogoProps {
   size?: "sm" | "md" | "lg";
   showWordmark?: boolean;
   variant?: "default" | "light";
+  withTagline?: boolean;
 }
 
 export function Logo({
@@ -13,104 +14,103 @@ export function Logo({
   size = "md",
   showWordmark = true,
   variant = "default",
+  withTagline = false,
 }: LogoProps) {
   const sizeMap = {
-    sm: { glyph: "w-7 h-7", text: "text-lg", spacing: "gap-2" },
-    md: { glyph: "w-9 h-9", text: "text-2xl", spacing: "gap-2.5" },
-    lg: { glyph: "w-11 h-11", text: "text-3xl", spacing: "gap-3" },
+    sm: { glyph: "w-8 h-8", text: "text-lg", tagline: "text-[9px] tracking-[0.2em]" },
+    md: { glyph: "w-10 h-10", text: "text-2xl", tagline: "text-[10px] tracking-[0.25em]" },
+    lg: { glyph: "w-14 h-14", text: "text-3xl", tagline: "text-xs tracking-[0.3em]" },
   };
 
-  const { glyph, text, spacing } = sizeMap[size];
+  const { glyph, text, tagline } = sizeMap[size];
   const isLight = variant === "light";
 
   return (
     <Link
       href="/"
       className={cn(
-        "group inline-flex items-center transition-opacity hover:opacity-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 rounded-lg",
-        spacing,
+        "group inline-flex items-center gap-2.5 transition-opacity hover:opacity-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4A017] focus-visible:ring-offset-2 rounded-lg select-none",
         className
       )}
       aria-label="AeroBook Home"
     >
-      {/* Aerodynamic wing SVG glyph */}
+      {/* Brand Ascending Airliner Vector Icon with Dynamic Contrail */}
       <div
         className={cn(
-          "relative flex items-center justify-center rounded-xl transition-transform duration-300 group-hover:scale-105 p-1.5",
-          isLight
-            ? "bg-white/10 border border-white/15"
-            : "bg-gradient-to-br from-primary/10 via-primary/5 to-accent/10",
+          "relative flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:scale-105",
           glyph
         )}
       >
         <svg
-          viewBox="0 0 40 40"
+          viewBox="0 0 48 48"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          className="w-full h-full"
+          className="w-full h-full drop-shadow-xs"
           aria-hidden="true"
         >
-          <defs>
-            <linearGradient
-              id="aerobook-wing-grad"
-              x1="6"
-              y1="8"
-              x2="34"
-              y2="34"
-              gradientUnits="userSpaceOnUse"
-            >
-              <stop offset="0%" stopColor={isLight ? "#38bdf8" : "#0E7C7B"} />
-              <stop offset="100%" stopColor={isLight ? "#0284c7" : "#0A6362"} />
-            </linearGradient>
-            <linearGradient
-              id="aerobook-accent-grad"
-              x1="18"
-              y1="20"
-              x2="36"
-              y2="36"
-              gradientUnits="userSpaceOnUse"
-            >
-              <stop offset="0%" stopColor="#FF6B4A" />
-              <stop offset="100%" stopColor="#E85A3A" />
-            </linearGradient>
-          </defs>
-
-          {/* Upper supersonic wing foil */}
-          <path d="M6 24L34 8L22 34L18 24L6 24Z" fill="url(#aerobook-wing-grad)" />
-
-          {/* Underwing facet creating depth and fold */}
-          <path d="M18 24L34 8L20 20L18 24Z" fill={isLight ? "#0369a1" : "#084E4D"} opacity="0.9" />
-
-          {/* Trailing origami rudder / coral lift accent */}
-          <path d="M18 24L22 34L25 25L18 24Z" fill="url(#aerobook-accent-grad)" />
-
-          {/* Flight path trail line */}
+          {/* Contrail streak extending backwards across */}
           <path
-            d="M4 27C10 27 14 26 17 24"
-            stroke={isLight ? "#38bdf8" : "#0E7C7B"}
-            strokeWidth="2"
+            d="M3 30.5C11 30 19 28.5 27 26.5"
+            stroke="#D4A017"
+            strokeWidth="2.5"
             strokeLinecap="round"
-            strokeDasharray="2 3"
-            opacity="0.8"
           />
+          <path
+            d="M5 31L23 27"
+            stroke="#D4A017"
+            strokeWidth="1.2"
+            opacity="0.6"
+            strokeLinecap="round"
+          />
+
+          {/* Ascending Airliner in Brand Gold (#D4A017) */}
+          <g fill="#D4A017">
+            {/* Fuselage & Nose */}
+            <path d="M22 27L38 18.5C41 16.9 43.5 17.5 45 19.5C45.8 20.6 45.5 21.8 44 22.8L31.5 29.5L22 27Z" />
+            {/* Main Swept Wing (Far side / top) */}
+            <path d="M30 22.5L34 8L38 8.8L35.5 20L30 22.5Z" />
+            {/* Main Swept Wing (Near side / bottom) */}
+            <path d="M26 25.5L23 37L26.5 37.5L31 28L26 25.5Z" />
+            {/* Tail Fin (Vertical Stabilizer) */}
+            <path d="M21 27.2L15 21.5L18 20.8L23 26.2L21 27.2Z" />
+            {/* Horizontal Stabilizer (Far side) */}
+            <path d="M20 27.5L16.5 24L18.5 23.5L21.5 26.8L20 27.5Z" />
+          </g>
         </svg>
       </div>
 
       {showWordmark && (
-        <span
-          className={cn(
-            "font-heading font-extrabold tracking-tight select-none flex items-baseline",
-            text
+        <div className="flex flex-col">
+          <span
+            className={cn(
+              "font-heading font-extrabold tracking-tight flex items-baseline leading-none",
+              text
+            )}
+            style={{ fontFamily: "var(--font-montserrat), sans-serif" }}
+          >
+            <span
+              className={cn(
+                "transition-colors",
+                isLight ? "text-white" : "text-[#0B1F2D]"
+              )}
+            >
+              Aero
+            </span>
+            <span className="text-[#D4A017]">Book</span>
+          </span>
+
+          {withTagline && (
+            <span
+              className={cn(
+                "font-heading font-semibold uppercase leading-tight mt-0.5",
+                tagline,
+                isLight ? "text-white/70" : "text-[#6B7280]"
+              )}
+            >
+              Flights • Hotels • More
+            </span>
           )}
-        >
-          <span className={cn("transition-colors", isLight ? "text-white" : "text-foreground")}>
-            Aero
-          </span>
-          <span className={cn("transition-colors", isLight ? "text-[#38bdf8]" : "text-primary")}>
-            Book
-          </span>
-          <span className="inline-block w-1.5 h-1.5 ml-0.5 rounded-full bg-accent" />
-        </span>
+        </div>
       )}
     </Link>
   );

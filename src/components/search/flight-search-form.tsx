@@ -140,7 +140,7 @@ export function FlightSearchForm({ initialValues, className }: FlightSearchFormP
               className={cn(
                 "flex items-center gap-1 rounded-md px-3 py-1 text-xs font-semibold transition-all cursor-pointer",
                 currentTrip === "roundtrip"
-                  ? "bg-white text-[#05203c] font-bold shadow-xs"
+                  ? "bg-white text-[#0B1F2D] font-bold shadow-xs"
                   : "text-white/80 hover:text-white hover:bg-white/10"
               )}
             >
@@ -153,7 +153,7 @@ export function FlightSearchForm({ initialValues, className }: FlightSearchFormP
               className={cn(
                 "flex items-center gap-1 rounded-md px-3 py-1 text-xs font-semibold transition-all cursor-pointer",
                 currentTrip === "oneway"
-                  ? "bg-white text-[#05203c] font-bold shadow-xs"
+                  ? "bg-white text-[#0B1F2D] font-bold shadow-xs"
                   : "text-white/80 hover:text-white hover:bg-white/10"
               )}
             >
@@ -267,14 +267,14 @@ export function FlightSearchForm({ initialValues, className }: FlightSearchFormP
             />
           </div>
 
-          {/* Skyscanner Search CTA Button */}
+          {/* Brand Gold Search CTA Button */}
           <Button
             type="submit"
             aria-label="Search flights"
-            className="h-auto min-h-[64px] px-8 bg-[#0062E3] hover:bg-[#0050ba] text-white font-bold text-base flex items-center justify-center gap-2 rounded-none rounded-b-xl lg:rounded-b-none lg:rounded-r-xl transition-colors shrink-0 shadow-sm cursor-pointer border-0"
+            className="h-auto min-h-[64px] px-8 bg-[#D4A017] hover:bg-[#B88B13] text-[#0B1F2D] font-extrabold text-base flex items-center justify-center gap-2 rounded-none rounded-b-xl lg:rounded-b-none lg:rounded-r-xl transition-colors shrink-0 shadow-sm cursor-pointer border-0"
           >
             <span>Search</span>
-            <Search className="h-4 w-4" />
+            <Search className="h-4 w-4 stroke-[2.5]" />
           </Button>
         </div>
 
@@ -288,12 +288,12 @@ export function FlightSearchForm({ initialValues, className }: FlightSearchFormP
           </div>
         )}
 
-        {/* Skyscanner Checkbox Row Below Search Bar */}
+        {/* Checkbox Row Below Search Bar */}
         <div className="flex flex-wrap items-center gap-x-6 gap-y-2 pt-1 text-xs text-white">
           <label className="flex items-center gap-2 cursor-pointer select-none text-white/90 hover:text-white">
             <input
               type="checkbox"
-              className="h-4 w-4 rounded border-white/40 bg-white/20 text-[#0062E3] focus:ring-0 cursor-pointer accent-[#0062E3]"
+              className="h-4 w-4 rounded border-white/40 bg-white/20 text-[#D4A017] focus:ring-0 cursor-pointer accent-[#D4A017]"
             />
             <span>Add nearby airports</span>
           </label>
@@ -302,7 +302,7 @@ export function FlightSearchForm({ initialValues, className }: FlightSearchFormP
             <input
               type="checkbox"
               {...form.register("directOnly")}
-              className="h-4 w-4 rounded border-white/40 bg-white/20 text-[#0062E3] focus:ring-0 cursor-pointer accent-[#0062E3]"
+              className="h-4 w-4 rounded border-white/40 bg-white/20 text-[#D4A017] focus:ring-0 cursor-pointer accent-[#D4A017]"
             />
             <span className="font-semibold">Direct flights</span>
           </label>
@@ -311,7 +311,7 @@ export function FlightSearchForm({ initialValues, className }: FlightSearchFormP
             <input
               type="checkbox"
               defaultChecked
-              className="h-4 w-4 rounded border-white/40 bg-white/20 text-[#0062E3] focus:ring-0 cursor-pointer accent-[#0062E3]"
+              className="h-4 w-4 rounded border-white/40 bg-white/20 text-[#D4A017] focus:ring-0 cursor-pointer accent-[#D4A017]"
             />
             <span>Add a place to stay</span>
           </label>

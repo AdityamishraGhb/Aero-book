@@ -7,10 +7,17 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-sans: var(--font-poppins), var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-heading:
-    var(--font-plus-jakarta), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    var(--font-montserrat), var(--font-plus-jakarta), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-mono: var(--font-geist-mono, monospace);
+
+  --color-navy: #0B1F2D;
+  --color-gold: #D4A017;
+  --color-gold-hover: #b88b13;
+  --color-brand-gray: #6B7280;
+  --color-brand-light: #F6F7FB;
+  --color-brand-dark: #1F2937;
 
   --color-ink: var(--ink);
   --color-surface: var(--surface);
@@ -51,76 +58,92 @@
 }
 
 :root {
-  /* AeroBook Brand Colors */
-  --ink: #0b1f2a;
-  --surface: #f7f5f2;
-  --primary: #0e7c7b;
-  --primary-hover: #0a6362;
-  --primary-foreground: #ffffff;
-  --accent: #ff6b4a;
-  --accent-hover: #e85a3a;
-  --accent-foreground: #ffffff;
-  --border: #e4e1dc;
-  --input: #e4e1dc;
+  /* AeroBook Official Brand Colours */
+  --primary: #0B1F2D;           /* Primary Navy: Trust | Stability | Professional */
+  --primary-hover: #163247;
+  --primary-foreground: #FFFFFF;
+
+  --secondary: #D4A017;         /* Secondary Gold: Growth | Success | Travel */
+  --secondary-hover: #B88B13;
+  --secondary-foreground: #0B1F2D;
+
+  --accent: #6B7280;            /* Accent Gray: Balance | Modern | Clean */
+  --accent-hover: #4B5563;
+  --accent-foreground: #FFFFFF;
+
+  --light: #F6F7FB;             /* Light Background: Clean | Minimal | Spacious */
+  --dark: #1F2937;              /* Dark Text: Readable | Clear | Strong */
+
+  --ink: #0B1F2D;
+  --surface: #F6F7FB;
 
   /* App Surface Mapping */
-  --background: #f7f5f2;
-  --foreground: #0b1f2a;
-  --card: #ffffff;
-  --card-foreground: #0b1f2a;
-  --popover: #ffffff;
-  --popover-foreground: #0b1f2a;
+  --background: #F6F7FB;
+  --foreground: #1F2937;
+  --card: #FFFFFF;
+  --card-foreground: #1F2937;
+  --popover: #FFFFFF;
+  --popover-foreground: #1F2937;
 
-  --secondary: #ede9e3;
-  --secondary-foreground: #0b1f2a;
-  --muted: #eeebe6;
-  --muted-foreground: #5c6b73;
-  --destructive: #dc2626;
-  --destructive-foreground: #ffffff;
-  --ring: #0e7c7b;
+  --border: #E5E7EB;
+  --input: #E5E7EB;
+  --ring: #D4A017;
 
-  --success: #16a34a;
-  --warning: #d97706;
+  --muted: #EEF2F6;
+  --muted-foreground: #6B7280;
+  --destructive: #DC2626;
+  --destructive-foreground: #FFFFFF;
+
+  --success: #16A34A;
+  --warning: #D4A017;
 
   /* Radius: 12px (0.75rem) */
   --radius: 0.75rem;
 
   /* Soft Shadows */
-  --shadow-soft-sm: 0 1px 2px 0 rgb(11 31 42 / 0.05);
-  --shadow-soft-md: 0 4px 6px -1px rgb(11 31 42 / 0.07), 0 2px 4px -2px rgb(11 31 42 / 0.05);
-  --shadow-soft-lg: 0 10px 15px -3px rgb(11 31 42 / 0.08), 0 4px 6px -4px rgb(11 31 42 / 0.04);
-  --shadow-soft-xl: 0 20px 25px -5px rgb(11 31 42 / 0.08), 0 8px 10px -6px rgb(11 31 42 / 0.04);
+  --shadow-soft-sm: 0 1px 2px 0 rgb(11 31 45 / 0.05);
+  --shadow-soft-md: 0 4px 6px -1px rgb(11 31 45 / 0.07), 0 2px 4px -2px rgb(11 31 45 / 0.05);
+  --shadow-soft-lg: 0 10px 15px -3px rgb(11 31 45 / 0.08), 0 4px 6px -4px rgb(11 31 45 / 0.04);
+  --shadow-soft-xl: 0 20px 25px -5px rgb(11 31 45 / 0.08), 0 8px 10px -6px rgb(11 31 45 / 0.04);
 }
 
 .dark {
-  --ink: #f7f5f2;
-  --surface: #0b1f2a;
-  --primary: #129392;
-  --primary-hover: #0e7c7b;
-  --primary-foreground: #ffffff;
-  --accent: #ff7b5c;
-  --accent-hover: #ff6b4a;
-  --accent-foreground: #ffffff;
-  --border: #1d3544;
-  --input: #1d3544;
+  --primary: #0B1F2D;
+  --primary-hover: #163247;
+  --primary-foreground: #FFFFFF;
 
-  --background: #0b1f2a;
-  --foreground: #f7f5f2;
-  --card: #122836;
-  --card-foreground: #f7f5f2;
-  --popover: #122836;
-  --popover-foreground: #f7f5f2;
+  --secondary: #D4A017;
+  --secondary-hover: #E0AB22;
+  --secondary-foreground: #0B1F2D;
 
-  --secondary: #193444;
-  --secondary-foreground: #f7f5f2;
-  --muted: #193444;
-  --muted-foreground: #92a4af;
-  --destructive: #ef4444;
-  --destructive-foreground: #ffffff;
-  --ring: #129392;
+  --accent: #9CA3AF;
+  --accent-hover: #D1D5DB;
+  --accent-foreground: #FFFFFF;
 
-  --success: #22c55e;
-  --warning: #f59e0b;
+  --light: #07131C;
+  --dark: #F6F7FB;
+
+  --ink: #F6F7FB;
+  --surface: #07131C;
+
+  --background: #07131C;
+  --foreground: #F6F7FB;
+  --card: #0B1F2D;
+  --card-foreground: #F6F7FB;
+  --popover: #0B1F2D;
+  --popover-foreground: #F6F7FB;
+
+  --border: #1E3A4F;
+  --input: #1E3A4F;
+  --ring: #D4A017;
+
+  --muted: #122838;
+  --muted-foreground: #9CA3AF;
+  --destructive: #EF4444;
+  --destructive-foreground: #FFFFFF;
+
+  --success: #22C55E;
+  --warning: #F59E0B;
 }
 
 @layer base {
@@ -129,6 +152,7 @@
   }
   body {
     @apply bg-background text-foreground antialiased;
+    font-family: var(--font-poppins), var(--font-inter), sans-serif;
     font-feature-settings:
       "rlig" 1,
       "calt" 1;
@@ -142,4 +166,9 @@
     font-family: var(--font-heading);
     letter-spacing: -0.02em;
   }
+}
+
+.logo {
+  font-family: var(--font-montserrat), sans-serif;
+  color: var(--primary);
 }
