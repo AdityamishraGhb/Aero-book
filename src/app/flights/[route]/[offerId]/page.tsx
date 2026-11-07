@@ -19,11 +19,13 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { getAirportByIata } from "@/data/airports";
 import { findOfferById } from "@/lib/providers/offer-lookup";
-import { formatCurrency, formatDuration, formatTime, formatDate } from "@/lib/format";
+import { formatDuration, formatTime, formatDate } from "@/lib/format";
+import { useCurrency } from "@/lib/hooks/use-currency";
 import { useBookingStore } from "@/lib/store/booking-store";
 import type { FlightOffer, FlightSlice } from "@/types/flight";
 
 export default function FlightOfferDetailsPage() {
+  const { formatPrice, currencyConfig } = useCurrency();
   const params = useParams<{ route: string; offerId: string }>();
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -395,27 +397,27 @@ export default function FlightOfferDetailsPage() {
                 <div className="flex justify-between items-center text-muted-foreground">
                   <span>Base Airfare ({adults} adult)</span>
                   <span className="font-semibold text-foreground font-mono">
-                    {formatCurrency(offer.price.baseFare)}
+                    {formatPrice(offer.price.baseFare)}
                   </span>
                 </div>
 
                 <div className="flex justify-between items-center text-muted-foreground">
                   <span>Airport Taxes & UDF/PSF</span>
                   <span className="font-semibold text-foreground font-mono">
-                    {formatCurrency(Math.round(offer.price.taxes * 0.75))}
+                    {formatPrice(Math.round(offer.price.taxes * 0.75))}
                   </span>
                 </div>
 
                 <div className="flex justify-between items-center text-muted-foreground">
                   <span>Aviation Security Fee & GST (5%)</span>
                   <span className="font-semibold text-foreground font-mono">
-                    {formatCurrency(Math.round(offer.price.taxes * 0.25))}
+                    {formatPrice(Math.round(offer.price.taxes * 0.25))}
                   </span>
                 </div>
 
                 <div className="flex justify-between items-center text-emerald-700 dark:text-emerald-400 font-semibold pt-1">
                   <span>AeroBook Service Markup</span>
-                  <span>₹0 (Free)</span>
+                  <span>{currencyConfig.symbol}0 (Free)</span>
                 </div>
 
                 <div className="border-t border-border/80 pt-4 flex items-baseline justify-between">
@@ -428,7 +430,7 @@ export default function FlightOfferDetailsPage() {
                     </span>
                   </div>
                   <span className="font-heading text-3xl font-extrabold text-foreground">
-                    {formatCurrency(offer.price.amount)}
+                    {formatPrice(offer.price.amount)}
                   </span>
                 </div>
 

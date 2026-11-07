@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Logo } from "./logo";
 import { LocaleCurrencySelector } from "./locale-currency-selector";
 import { MobileNav } from "./mobile-nav";
+import { MobileQrModal } from "./mobile-qr-modal";
 
 export function Header() {
   return (
@@ -55,8 +56,11 @@ export function Header() {
           </nav>
         </div>
 
-        {/* Right Actions: Help, Currency Selector, Saved Flights, Sign In, Mobile Nav */}
+        {/* Right Actions: Help, Currency Selector, QR Code Modal, Saved Flights, Sign In, Mobile Nav */}
         <div className="flex items-center gap-2 sm:gap-3">
+          {/* Scan QR Code Modal Button */}
+          <MobileQrModal />
+
           {/* Help link */}
           <Link
             href="#faq"
@@ -81,15 +85,15 @@ export function Header() {
             <span className="sr-only">Saved flights</span>
           </Link>
 
-          {/* Login / Account Button */}
+          {/* Register / Sign In / Account Button */}
           <Button
             asChild
             size="sm"
-            className="hidden sm:inline-flex h-9 px-4 text-xs font-bold gap-1.5 bg-white text-[#05203c] hover:bg-white/90 border-0 rounded-lg shadow-xs"
+            className="hidden sm:inline-flex h-9 px-4 text-xs font-bold gap-1.5 bg-white text-[#05203c] hover:bg-white/90 border-0 rounded-lg shadow-xs cursor-pointer"
           >
-            <Link href="/account" aria-label="Account">
+            <Link href="/auth/signin?mode=register" aria-label="Account / Register">
               <User className="h-3.5 w-3.5 text-[#05203c]" />
-              <span>Account</span>
+              <span>Register / Login</span>
             </Link>
           </Button>
 

@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { SlidersHorizontal, RotateCcw } from "lucide-react";
-import { formatCurrency } from "@/lib/format";
+import { useCurrency } from "@/lib/hooks/use-currency";
 import { Slider } from "@/components/ui/slider";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -40,6 +40,7 @@ export function FiltersSidebar({
   onResetFilters,
   className,
 }: FiltersSidebarProps) {
+  const { formatPrice } = useCurrency();
   const currentMaxPrice = filters.maxPrice ?? maxPricePossible;
 
   const handleStopChange = (val: "all" | "0" | "1") => {
@@ -135,7 +136,7 @@ export function FiltersSidebar({
               Max Price
             </span>
             <span className="font-heading text-xs font-bold text-primary">
-              Up to {formatCurrency(currentMaxPrice)}
+              Up to {formatPrice(currentMaxPrice)}
             </span>
           </div>
 
@@ -148,8 +149,8 @@ export function FiltersSidebar({
           />
 
           <div className="flex justify-between text-[11px] text-muted-foreground font-mono">
-            <span>{formatCurrency(minPricePossible)}</span>
-            <span>{formatCurrency(maxPricePossible)}</span>
+            <span>{formatPrice(minPricePossible)}</span>
+            <span>{formatPrice(maxPricePossible)}</span>
           </div>
         </div>
       )}
@@ -210,7 +211,7 @@ export function FiltersSidebar({
                     <span className="font-medium text-foreground">{airline.name}</span>
                   </div>
                   <span className="text-[11px] text-muted-foreground font-mono">
-                    {formatCurrency(airline.minPrice)}
+                    {formatPrice(airline.minPrice)}
                   </span>
                 </label>
               );

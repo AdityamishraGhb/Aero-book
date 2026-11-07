@@ -2,7 +2,8 @@
 
 import * as React from "react";
 import { Sparkles, TrendingDown, Zap } from "lucide-react";
-import { formatCurrency, formatDuration } from "@/lib/format";
+import { formatDuration } from "@/lib/format";
+import { useCurrency } from "@/lib/hooks/use-currency";
 import { cn } from "@/lib/utils";
 
 interface SortTabsProps {
@@ -20,6 +21,7 @@ export function SortTabs({
   minDurationMinutes,
   bestScore,
 }: SortTabsProps) {
+  const { formatPrice } = useCurrency();
   const tabs = [
     {
       id: "best" as const,
@@ -31,7 +33,7 @@ export function SortTabs({
     {
       id: "cheapest" as const,
       label: "Cheapest",
-      subtext: minPrice ? `from ${formatCurrency(minPrice)}` : "Lowest fare",
+      subtext: minPrice ? `from ${formatPrice(minPrice)}` : "Lowest fare",
       icon: TrendingDown,
       iconColor: "text-emerald-600 dark:text-emerald-400",
     },

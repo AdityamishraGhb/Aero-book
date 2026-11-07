@@ -20,9 +20,11 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useBookingStore } from "@/lib/store/booking-store";
 import { getAirportByIata } from "@/data/airports";
-import { formatCurrency, formatDuration, formatTime, formatDate } from "@/lib/format";
+import { formatDuration, formatTime, formatDate } from "@/lib/format";
+import { useCurrency } from "@/lib/hooks/use-currency";
 
 export default function BookingConfirmationPage() {
+  const { formatPrice } = useCurrency();
   const router = useRouter();
   const confirmedBooking = useBookingStore((s) => s.confirmedBooking);
   const resetBooking = useBookingStore((s) => s.resetBooking);
@@ -338,7 +340,7 @@ export default function BookingConfirmationPage() {
               <div className="border-t border-border/60 pt-3 flex items-baseline justify-between">
                 <span className="font-bold text-foreground">Total Paid:</span>
                 <span className="font-heading text-xl font-extrabold text-foreground">
-                  {formatCurrency(offer.price.amount)}
+                  {formatPrice(offer.price.amount)}
                 </span>
               </div>
             </div>

@@ -31,7 +31,7 @@ export async function getUserByEmail(email: string): Promise<User | null> {
       const results = await db
         .select()
         .from(schema.users)
-        .where(eq(schema.users.email, email))
+        .where(eq(schema.users.email, email.toLowerCase().trim()))
         .limit(1);
       return results[0] || null;
     } catch {
@@ -39,6 +39,33 @@ export async function getUserByEmail(email: string): Promise<User | null> {
     }
   }
   return memoryDb.getUserByEmail(email);
+}
+
+export async function createUser(input: Partial<User> & { email: string }): Promise<User> {
+  if (db) {
+    try {
+      const results = await db
+        .insert(schema.users)
+        .values({
+          email: input.email.toLowerCase().trim(),
+          name:
+            input.name ||
+            (input.firstName && input.lastName
+              ? `${input.firstName} ${input.lastName}`
+              : input.email.split("@")[0]),
+          firstName: input.firstName || null,
+          lastName: input.lastName || null,
+          phone: input.phone || null,
+          password: input.password || null,
+          image: input.image || null,
+        })
+        .returning();
+      if (results[0]) return results[0];
+    } catch {
+      // Fallback
+    }
+  }
+  return memoryDb.createUser(input);
 }
 
 export async function getUserById(id: string): Promise<User | null> {

@@ -10,75 +10,39 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { SUPPORTED_CURRENCIES, DEFAULT_CURRENCY } from "@/lib/format";
-
-const COOKIE_NAME = "aerobook_currency";
-
-function subscribeToCurrencyChanges(callback: () => void): () => void {
-  if (typeof window === "undefined") return () => {};
-  window.addEventListener("aerobook-currency-change", callback);
-  return () => window.removeEventListener("aerobook-currency-change", callback);
-}
-
-function getCurrencySnapshot(): string {
-  if (typeof document === "undefined") return DEFAULT_CURRENCY;
-  const match = document.cookie.match(new RegExp(`(^| )${COOKIE_NAME}=([^;]+)`));
-  if (match?.[2] && SUPPORTED_CURRENCIES.some((c) => c.code === match[2])) {
-    return match[2];
-  }
-  return DEFAULT_CURRENCY;
-}
-
-function getServerSnapshot(): string {
-  return DEFAULT_CURRENCY;
-}
+import { SUPPORTED_CURRENCIES } from "@/lib/format";
+import { useCurrency } from "@/lib/hooks/use-currency";
 
 export function LocaleCurrencySelector() {
   const router = useRouter();
-  const selectedCurrency = React.useSyncExternalStore(
-    subscribeToCurrencyChanges,
-    getCurrencySnapshot,
-    getServerSnapshot
-  );
+  const { currency, currencyConfig, setCurrency } = useCurrency();
 
   const handleCurrencyChange = (newCurrency: string) => {
-    // Persist in cookie for 1 year
-    document.cookie = `${COOKIE_NAME}=${newCurrency}; path=/; max-age=31536000; SameSite=Lax`;
-
-    // Notify listeners
-    if (typeof window !== "undefined") {
-      window.dispatchEvent(
-        new CustomEvent("aerobook-currency-change", { detail: { currency: newCurrency } })
-      );
-    }
-
+    setCurrency(newCurrency);
     router.refresh();
   };
 
-  const currentConfig =
-    SUPPORTED_CURRENCIES.find((c) => c.code === selectedCurrency) || SUPPORTED_CURRENCIES[0];
-
   return (
     <div className="flex items-center gap-1.5" title="Select Currency">
-      <Select value={selectedCurrency} onValueChange={handleCurrencyChange}>
+      <Select value={currency} onValueChange={handleCurrencyChange}>
         <SelectTrigger
           aria-label="Select currency"
-          className="h-9 w-auto gap-2 border-white/20 bg-white/10 text-white px-2.5 text-xs font-semibold hover:bg-white/20 rounded-lg"
+          className="h-9 w-auto gap-2 border-white/20 bg-white/10 text-white px-2.5 text-xs font-semibold hover:bg-white/20 rounded-lg cursor-pointer"
         >
           <Globe className="h-3.5 w-3.5 text-white/80" aria-hidden="true" />
           <SelectValue>
             <span className="text-white">
-              {currentConfig.symbol} {currentConfig.code}
+              {currencyConfig.symbol} {currencyConfig.code}
             </span>
           </SelectValue>
         </SelectTrigger>
-        <SelectContent align="end" className="w-56">
+        <SelectContent align="end" className="w-56 bg-card border-border shadow-lg z-50">
           <div className="px-2 py-1.5 text-xs font-semibold text-muted-foreground border-b border-border/60">
             Regional Currency
           </div>
-          {SUPPORTED_CURRENCIES.map((currency) => (
-            <SelectItem key={currency.code} value={currency.code} className="text-xs py-2">
-              <span className="font-medium">{currency.label}</span>
+          {SUPPORTED_CURRENCIES.map((item) => (
+            <SelectItem key={item.code} value={item.code} className="text-xs py-2 cursor-pointer">
+              <span className="font-medium">{item.label}</span>
             </SelectItem>
           ))}
         </SelectContent>

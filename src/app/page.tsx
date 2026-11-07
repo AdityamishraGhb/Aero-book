@@ -16,6 +16,8 @@ import {
 } from "lucide-react";
 import { FlightSearchForm } from "@/components/search/flight-search-form";
 import { buildSearchUrl } from "@/lib/url";
+import { useCurrency } from "@/lib/hooks/use-currency";
+import { MobileAppSection } from "@/components/home/mobile-app-section";
 
 // Default future departure date helper (7 days from today)
 function getFutureDate(daysAhead: number): string {
@@ -34,7 +36,7 @@ const POPULAR_ROUTES = [
     to: "BOM",
     toCity: "Mumbai",
     duration: "2h 15m",
-    estFare: "₹4,299",
+    estFareInInr: 4299,
     tag: "High Frequency",
   },
   {
@@ -43,7 +45,7 @@ const POPULAR_ROUTES = [
     to: "DEL",
     toCity: "New Delhi",
     duration: "2h 45m",
-    estFare: "₹5,150",
+    estFareInInr: 5150,
     tag: "Non-Stop",
   },
   {
@@ -52,7 +54,7 @@ const POPULAR_ROUTES = [
     to: "GOI",
     toCity: "Goa (Dabolim)",
     duration: "1h 15m",
-    estFare: "₹2,890",
+    estFareInInr: 2890,
     tag: "Weekend Escape",
   },
   {
@@ -61,7 +63,7 @@ const POPULAR_ROUTES = [
     to: "CCU",
     toCity: "Kolkata",
     duration: "2h 20m",
-    estFare: "₹4,750",
+    estFareInInr: 4750,
     tag: "Best Value",
   },
   {
@@ -70,7 +72,7 @@ const POPULAR_ROUTES = [
     to: "DXB",
     toCity: "Dubai",
     duration: "3h 45m",
-    estFare: "₹14,990",
+    estFareInInr: 14990,
     tag: "International Hub",
   },
   {
@@ -79,7 +81,7 @@ const POPULAR_ROUTES = [
     to: "SIN",
     toCity: "Singapore",
     duration: "5h 25m",
-    estFare: "₹18,450",
+    estFareInInr: 18450,
     tag: "Direct",
   },
 ];
@@ -108,6 +110,7 @@ const FAQS = [
 ];
 
 export default function HomePage() {
+  const { formatPrice } = useCurrency();
   const nextWeekDate = getFutureDate(7);
 
   return (
@@ -280,7 +283,7 @@ export default function HomePage() {
                         Fares starting at
                       </span>
                       <span className="font-heading text-base font-bold text-accent">
-                        {route.estFare}
+                        {formatPrice(route.estFareInInr)}
                       </span>
                     </div>
 
@@ -358,6 +361,9 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* Navan-inspired Mobile App & QR Code Launch Section */}
+      <MobileAppSection />
 
       {/* FAQ Section */}
       <section id="faq" className="border-t border-border bg-background py-16 sm:py-24">

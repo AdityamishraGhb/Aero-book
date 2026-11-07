@@ -3,7 +3,7 @@
 import * as React from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { signOut } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import {
   Plane,
   Bookmark,
@@ -13,22 +13,60 @@ import {
   ExternalLink,
   Trash2,
   Loader2,
+  Phone,
+  Mail,
+  User as UserIcon,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
-import { formatCurrency, formatTime, formatDate } from "@/lib/format";
+import { formatTime, formatDate } from "@/lib/format";
+import { useCurrency } from "@/lib/hooks/use-currency";
 import type { Booking, SavedSearch, FavouriteRoute } from "@/lib/db/schema";
 
 export default function AccountPage() {
   const searchParams = useSearchParams();
   const initialTab = (searchParams.get("tab") as "bookings" | "saved" | "favourites") || "bookings";
+  const { data: session } = useSession();
+  const { formatPrice } = useCurrency();
 
   const [activeTab, setActiveTab] = React.useState<"bookings" | "saved" | "favourites">(initialTab);
   const [bookings, setBookings] = React.useState<Booking[]>([]);
   const [savedSearches, setSavedSearches] = React.useState<SavedSearch[]>([]);
   const [favouriteRoutes, setFavouriteRoutes] = React.useState<FavouriteRoute[]>([]);
   const [isLoading, setIsLoading] = React.useState(true);
+  const [registeredProfile, setRegisteredProfile] = React.useState<{
+    firstName?: string;
+    lastName?: string;
+    name?: string;
+    email?: string;
+    phone?: string;
+  } | null>(null);
+
+  React.useEffect(() => {
+    try {
+      const stored = localStorage.getItem("aerobook_registered_user");
+      if (stored) {
+        setRegisteredProfile(JSON.parse(stored));
+      }
+    } catch {}
+  }, []);
+
+  const displayName =
+    registeredProfile?.name ||
+    (registeredProfile?.firstName && registeredProfile?.lastName
+      ? `${registeredProfile.firstName} ${registeredProfile.lastName}`
+      : session?.user?.name || "Aditya Mishra");
+
+  const displayEmail = registeredProfile?.email || session?.user?.email || "aditya@aerobook.in";
+  const displayPhone = registeredProfile?.phone || "+91 9876543210";
+
+  const initials = displayName
+    .split(" ")
+    .filter(Boolean)
+    .map((n) => n[0]?.toUpperCase())
+    .slice(0, 2)
+    .join("") || "AB";
 
   React.useEffect(() => {
     let cancelled = false;
@@ -89,20 +127,30 @@ export default function AccountPage() {
         <div className="rounded-2xl border border-border bg-card p-6 sm:p-8 shadow-soft-sm flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div className="flex items-center gap-4">
             <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-primary/10 text-primary font-heading font-extrabold text-2xl shadow-xs">
-              AM
+              {initials}
             </div>
             <div>
               <div className="flex items-center gap-2">
                 <h1 className="font-heading text-2xl font-extrabold text-foreground">
-                  Aditya Mishra
+                  {displayName}
                 </h1>
                 <Badge variant="accent" className="text-[10px] font-bold">
                   Verified Member
                 </Badge>
               </div>
-              <p className="text-xs text-muted-foreground mt-0.5">
-                aditya@aerobook.in • Member since October 2026
-              </p>
+              <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-muted-foreground mt-1">
+                <span className="flex items-center gap-1.5">
+                  <Mail className="h-3.5 w-3.5" />
+                  {displayEmail}
+                </span>
+                {displayPhone && (
+                  <span className="flex items-center gap-1.5">
+                    <Phone className="h-3.5 w-3.5" />
+                    {displayPhone}
+                  </span>
+                )}
+                <span>• Member since 2026</span>
+              </div>
             </div>
           </div>
 
@@ -260,7 +308,7 @@ export default function AccountPage() {
                       <div className="flex items-center justify-between lg:justify-end gap-6 border-t lg:border-t-0 pt-4 lg:pt-0">
                         <div className="lg:text-right">
                           <span className="font-heading text-xl font-extrabold text-foreground block">
-                            {formatCurrency(booking.totalAmount)}
+                            {formatPrice(booking.totalAmount)}
                           </span>
                           <span className="text-[11px] text-muted-foreground">Paid in full</span>
                         </div>

@@ -1,6 +1,7 @@
 import { describe, it, expect } from "vitest";
 import {
   formatCurrency,
+  convertPrice,
   formatDate,
   formatTime,
   formatDuration,
@@ -24,6 +25,14 @@ describe("format utilities", () => {
     it("supports all predefined currencies", () => {
       expect(SUPPORTED_CURRENCIES.length).toBeGreaterThanOrEqual(4);
       expect(SUPPORTED_CURRENCIES.some((c) => c.code === "INR")).toBe(true);
+    });
+
+    it("converts prices accurately across exchange rates", () => {
+      expect(convertPrice(4500, "INR")).toBe(4500);
+      expect(convertPrice(4500, "USD")).toBeGreaterThan(40);
+      expect(convertPrice(4500, "USD")).toBeLessThan(70);
+      expect(convertPrice(4500, "EUR")).toBeGreaterThan(40);
+      expect(convertPrice(4500, "GBP")).toBeGreaterThan(35);
     });
   });
 

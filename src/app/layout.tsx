@@ -4,6 +4,7 @@ import "./globals.css";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { Providers } from "@/components/providers";
+import { SourceBanner } from "@/components/common/source-banner";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   variable: "--font-plus-jakarta",
@@ -92,6 +93,7 @@ export default function RootLayout({
           Skip to main content
         </a>
         <Providers>
+          <SourceBanner />
           <Header />
           <main id="main-content" className="flex-1 flex flex-col" tabIndex={-1}>
             {children}

@@ -1,6 +1,6 @@
 /**
  * Internationalization, currency and date formatting utilities for AeroBook.
- * Default locale: en-IN (India) with INR currency and DD/MM/YYYY formatting.
+ * Default locale: en-IN (India) with INR currency.
  */
 
 export interface CurrencyConfig {
@@ -8,37 +8,65 @@ export interface CurrencyConfig {
   symbol: string;
   label: string;
   locale: string;
+  rateAgainstInr: number; // multiplier to convert 1 INR to this currency
 }
 
 export const SUPPORTED_CURRENCIES: CurrencyConfig[] = [
-  { code: "INR", symbol: "₹", label: "INR (₹) - Indian Rupee", locale: "en-IN" },
-  { code: "USD", symbol: "$", label: "USD ($) - US Dollar", locale: "en-US" },
-  { code: "EUR", symbol: "€", label: "EUR (€) - Euro", locale: "en-IE" },
-  { code: "GBP", symbol: "£", label: "GBP (£) - British Pound", locale: "en-GB" },
-  { code: "AED", symbol: "AED", label: "AED (د.إ) - UAE Dirham", locale: "en-AE" },
-  { code: "SGD", symbol: "S$", label: "SGD (S$) - Singapore Dollar", locale: "en-SG" },
+  { code: "INR", symbol: "₹", label: "INR (₹) - Indian Rupee", locale: "en-IN", rateAgainstInr: 1 },
+  { code: "USD", symbol: "$", label: "USD ($) - US Dollar", locale: "en-US", rateAgainstInr: 0.0116 },
+  { code: "EUR", symbol: "€", label: "EUR (€) - Euro", locale: "en-IE", rateAgainstInr: 0.0108 },
+  { code: "GBP", symbol: "£", label: "GBP (£) - British Pound", locale: "en-GB", rateAgainstInr: 0.0091 },
+  { code: "AED", symbol: "AED", label: "AED (د.إ) - UAE Dirham", locale: "en-AE", rateAgainstInr: 0.0425 },
+  { code: "SGD", symbol: "S$", label: "SGD (S$) - Singapore Dollar", locale: "en-SG", rateAgainstInr: 0.0154 },
 ];
+
+export const EXCHANGE_RATES: Record<string, number> = {
+  INR: 1,
+  USD: 0.0116,
+  EUR: 0.0108,
+  GBP: 0.0091,
+  AED: 0.0425,
+  SGD: 0.0154,
+};
 
 export const DEFAULT_CURRENCY = "INR";
 export const DEFAULT_LOCALE = "en-IN";
+export const COOKIE_NAME = "aerobook_currency";
+
+/**
+ * Convert an amount from base currency (INR) to target currency.
+ */
+export function convertPrice(amountInInr: number, targetCurrency: string = DEFAULT_CURRENCY): number {
+  if (!amountInInr || isNaN(amountInInr)) return 0;
+  if (targetCurrency === "INR") return Math.round(amountInInr);
+
+  const rate = EXCHANGE_RATES[targetCurrency] ?? 1;
+  const converted = amountInInr * rate;
+  return Math.max(1, Math.round(converted));
+}
 
 /**
  * Format a numeric amount to a localized currency string.
+ * Automatically resolves the appropriate locale if not provided.
  */
 export function formatCurrency(
   amount: number,
   currency = DEFAULT_CURRENCY,
-  locale = DEFAULT_LOCALE
+  locale?: string
 ): string {
+  const targetConfig =
+    SUPPORTED_CURRENCIES.find((c) => c.code === currency) || SUPPORTED_CURRENCIES[0];
+  const targetLocale = locale || targetConfig.locale;
+
   try {
-    return new Intl.NumberFormat(locale, {
+    return new Intl.NumberFormat(targetLocale, {
       style: "currency",
       currency,
       maximumFractionDigits: 0,
       minimumFractionDigits: 0,
     }).format(amount);
   } catch {
-    return `${currency} ${amount.toLocaleString()}`;
+    return `${targetConfig.symbol}${amount.toLocaleString()}`;
   }
 }
 
@@ -70,7 +98,7 @@ export function formatDate(
 }
 
 /**
- * Format time from a date input into 12-hour or 24-hour time (e.g. 14:35 or 02:35 PM).
+ * Format time from a date input into 24-hour time (e.g. 14:35).
  */
 export function formatTime(dateInput: Date | string | number, locale = DEFAULT_LOCALE): string {
   const date =

@@ -91,12 +91,21 @@ export function MobileNav() {
             </span>
             <div className="mt-2 flex flex-col gap-1">
               <Link
-                href="#saved"
+                href="/account?tab=saved"
                 onClick={() => setOpen(false)}
                 className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-foreground/80 hover:text-foreground hover:bg-muted transition-colors"
               >
                 <Heart className="h-4 w-4 text-primary" />
                 <span>Saved Flights</span>
+              </Link>
+
+              <Link
+                href="/mobile"
+                onClick={() => setOpen(false)}
+                className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-foreground/80 hover:text-foreground hover:bg-muted transition-colors"
+              >
+                <span className="text-base">📱</span>
+                <span>Mobile Web App & QR</span>
               </Link>
 
               <Link
@@ -114,12 +123,14 @@ export function MobileNav() {
         {/* Footer actions in drawer */}
         <div className="pt-6 border-t border-border/80 space-y-4">
           <Button
-            variant="outline"
-            className="w-full justify-center gap-2 h-10 font-semibold"
-            onClick={() => setOpen(false)}
+            asChild
+            variant="default"
+            className="w-full justify-center gap-2 h-10 font-bold bg-[#0062E3] text-white hover:bg-[#0050ba]"
           >
-            <User className="h-4 w-4 text-primary" />
-            <span>Sign In / Create Account</span>
+            <Link href="/auth/signin?mode=register" onClick={() => setOpen(false)}>
+              <User className="h-4 w-4" />
+              <span>Register / Sign In</span>
+            </Link>
           </Button>
 
           <div className="flex items-center justify-between">

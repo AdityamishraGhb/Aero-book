@@ -23,6 +23,10 @@ class InMemoryDatabase {
     const demoUser: User = {
       id: "usr-demo-1",
       name: "Aditya Mishra",
+      firstName: "Aditya",
+      lastName: "Mishra",
+      phone: "+91 9876543210",
+      password: "password123",
       email: "aditya@aerobook.in",
       emailVerified: new Date(),
       image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=128&q=80",
@@ -107,8 +111,16 @@ class InMemoryDatabase {
   createUser(user: Partial<User> & { email: string }): User {
     const newUser: User = {
       id: user.id || `usr-${crypto.randomUUID()}`,
-      name: user.name || user.email.split("@")[0],
-      email: user.email,
+      name:
+        user.name ||
+        (user.firstName && user.lastName
+          ? `${user.firstName} ${user.lastName}`
+          : user.email.split("@")[0]),
+      firstName: user.firstName || null,
+      lastName: user.lastName || null,
+      phone: user.phone || null,
+      password: user.password || null,
+      email: user.email.toLowerCase().trim(),
       emailVerified: user.emailVerified || null,
       image: user.image || null,
       createdAt: new Date(),

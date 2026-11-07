@@ -3,7 +3,8 @@
 import * as React from "react";
 import { Plane, Luggage, Sparkles, ArrowRight, ShieldCheck, CheckCircle2 } from "lucide-react";
 import type { FlightOffer, FlightSlice } from "@/types/flight";
-import { formatCurrency, formatDuration, formatTime } from "@/lib/format";
+import { formatDuration, formatTime } from "@/lib/format";
+import { useCurrency } from "@/lib/hooks/use-currency";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
@@ -120,6 +121,7 @@ export function FlightCard({
   isFastestOffer,
   onSelect,
 }: FlightCardProps) {
+  const { formatPrice } = useCurrency();
   const isRoundTrip = offer.slices.length > 1;
 
   return (
@@ -165,7 +167,7 @@ export function FlightCard({
         <div className="flex items-center justify-between lg:flex-col lg:items-end lg:justify-center gap-4 border-t lg:border-t-0 lg:border-l border-border/80 pt-4 lg:pt-0 lg:pl-6 shrink-0 min-w-[170px]">
           <div className="lg:text-right">
             <div className="font-heading text-2xl sm:text-3xl font-extrabold text-foreground">
-              {formatCurrency(offer.price.amount, offer.price.currency)}
+              {formatPrice(offer.price.amount)}
             </div>
             <p className="text-[11px] text-muted-foreground">Total incl. taxes & fees</p>
           </div>

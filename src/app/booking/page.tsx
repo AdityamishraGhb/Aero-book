@@ -31,10 +31,12 @@ import {
 } from "@/lib/store/booking-store";
 import { findOfferById } from "@/lib/providers/offer-lookup";
 import { getAirportByIata } from "@/data/airports";
-import { formatCurrency, formatDuration, formatTime, formatDate } from "@/lib/format";
+import { formatDuration, formatTime, formatDate } from "@/lib/format";
+import { useCurrency } from "@/lib/hooks/use-currency";
 import type { FlightOffer } from "@/types/flight";
 
 export default function BookingFlowPage() {
+  const { formatPrice, currencyConfig } = useCurrency();
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -984,7 +986,7 @@ export default function BookingFlowPage() {
                           </>
                         ) : (
                           <>
-                            <span>Confirm & Pay {formatCurrency(activeOffer.price.amount)}</span>
+                            <span>Confirm & Pay {formatPrice(activeOffer.price.amount)}</span>
                             <CheckCircle2 className="h-4 w-4" />
                           </>
                         )}
@@ -1028,27 +1030,27 @@ export default function BookingFlowPage() {
                 <div className="flex justify-between items-center text-muted-foreground">
                   <span>Base Airfare ({passengers.length} pax)</span>
                   <span className="font-semibold text-foreground font-mono">
-                    {formatCurrency(activeOffer.price.baseFare)}
+                    {formatPrice(activeOffer.price.baseFare)}
                   </span>
                 </div>
 
                 <div className="flex justify-between items-center text-muted-foreground">
                   <span>Airport Taxes & UDF</span>
                   <span className="font-semibold text-foreground font-mono">
-                    {formatCurrency(Math.round(activeOffer.price.taxes * 0.75))}
+                    {formatPrice(Math.round(activeOffer.price.taxes * 0.75))}
                   </span>
                 </div>
 
                 <div className="flex justify-between items-center text-muted-foreground">
                   <span>GST & Fuel Surcharge</span>
                   <span className="font-semibold text-foreground font-mono">
-                    {formatCurrency(Math.round(activeOffer.price.taxes * 0.25))}
+                    {formatPrice(Math.round(activeOffer.price.taxes * 0.25))}
                   </span>
                 </div>
 
                 <div className="flex justify-between items-center text-emerald-700 dark:text-emerald-400 font-semibold pt-1">
                   <span>Convenience Fee</span>
-                  <span>₹0 (Waived)</span>
+                  <span>{currencyConfig.symbol}0 (Waived)</span>
                 </div>
 
                 <div className="border-t border-border/80 pt-4 flex items-baseline justify-between">
@@ -1061,7 +1063,7 @@ export default function BookingFlowPage() {
                     </span>
                   </div>
                   <span className="font-heading text-2xl font-extrabold text-foreground">
-                    {formatCurrency(activeOffer.price.amount)}
+                    {formatPrice(activeOffer.price.amount)}
                   </span>
                 </div>
               </CardContent>
