@@ -163,10 +163,10 @@ export function FlightSearchForm({ initialValues, className }: FlightSearchFormP
           </div>
         </div>
 
-        {/* Skyscanner Signature Unified Segmented Horizontal Bar */}
-        <div className="flex flex-col lg:flex-row items-stretch bg-white rounded-xl shadow-2xl border border-slate-200 overflow-visible lg:overflow-hidden divide-y lg:divide-y-0 lg:divide-x divide-slate-200">
+        {/* Luxury Floating Console Segmented Horizontal Bar */}
+        <div className="flex flex-col lg:flex-row items-stretch bg-white rounded-2xl shadow-[0_20px_50px_-10px_rgba(11,31,45,0.35),0_0_0_1px_rgba(255,255,255,0.15)] border border-slate-200/90 overflow-visible lg:overflow-hidden divide-y lg:divide-y-0 lg:divide-x divide-slate-200/80 transition-shadow duration-300 hover:shadow-[0_25px_60px_-12px_rgba(11,31,45,0.45)]">
           {/* Origin Airport */}
-          <div className="flex-1 min-w-0 min-h-[64px] flex items-center bg-white relative">
+          <div className="flex-1 min-w-0 min-h-[68px] flex items-center bg-white relative">
             <Controller
               name="from"
               control={control}
@@ -184,19 +184,19 @@ export function FlightSearchForm({ initialValues, className }: FlightSearchFormP
           </div>
 
           {/* Swap Button (Centered between From and To) */}
-          <div className="relative z-10 flex items-center justify-center -my-3.5 lg:my-0 lg:-mx-4 shrink-0 pointer-events-auto">
+          <div className="relative z-10 flex items-center justify-center -my-3.5 lg:my-0 lg:-mx-4.5 shrink-0 pointer-events-auto">
             <button
               type="button"
               onClick={handleSwapAirports}
               aria-label="Swap origin and destination airports"
-              className="h-8 w-8 rounded-full border border-slate-300 bg-white text-slate-700 shadow-sm hover:bg-slate-100 hover:border-slate-400 hover:text-slate-900 transition-transform active:rotate-180 flex items-center justify-center cursor-pointer"
+              className="h-9 w-9 rounded-full border border-slate-200 bg-white text-[#0B1F2D] shadow-md hover:bg-slate-50 hover:border-[#D4A017] hover:text-[#D4A017] transition-all duration-300 hover:scale-110 active:rotate-180 flex items-center justify-center cursor-pointer"
             >
-              <ArrowLeftRight className="h-3.5 w-3.5" />
+              <ArrowLeftRight className="h-4 w-4" />
             </button>
           </div>
 
           {/* Destination Airport */}
-          <div className="flex-1 min-w-0 min-h-[64px] flex items-center bg-white relative">
+          <div className="flex-1 min-w-0 min-h-[68px] flex items-center bg-white relative">
             <Controller
               name="to"
               control={control}
@@ -215,8 +215,8 @@ export function FlightSearchForm({ initialValues, className }: FlightSearchFormP
           </div>
 
           {/* Departure Date */}
-          <div className="flex-1 min-w-0 min-h-[64px] px-4 py-2.5 flex flex-col justify-center bg-white hover:bg-slate-50 transition-colors">
-            <span className="block text-[11px] font-bold uppercase tracking-wider text-slate-500 mb-0.5">
+          <div className="flex-1 min-w-0 min-h-[68px] px-5 py-3 flex flex-col justify-center bg-white hover:bg-slate-50/90 transition-colors">
+            <span className="block text-[10px] font-heading font-extrabold uppercase tracking-[0.2em] text-[#6B7280] mb-0.5">
               Depart
             </span>
             <input
@@ -224,14 +224,14 @@ export function FlightSearchForm({ initialValues, className }: FlightSearchFormP
               min={todayIso}
               {...form.register("depart")}
               aria-label="Departure date"
-              className="w-full bg-transparent text-sm sm:text-base font-bold text-slate-900 focus:outline-none cursor-pointer border-0 p-0"
+              className="w-full bg-transparent text-sm sm:text-base font-heading font-bold text-[#0B1F2D] focus:outline-none cursor-pointer border-0 p-0"
             />
           </div>
 
           {/* Return Date (Roundtrip only) */}
           {currentTrip === "roundtrip" && (
-            <div className="flex-1 min-w-0 min-h-[64px] px-4 py-2.5 flex flex-col justify-center bg-white hover:bg-slate-50 transition-colors animate-in fade-in-50 duration-200">
-              <span className="block text-[11px] font-bold uppercase tracking-wider text-slate-500 mb-0.5">
+            <div className="flex-1 min-w-0 min-h-[68px] px-5 py-3 flex flex-col justify-center bg-white hover:bg-slate-50/90 transition-colors animate-in fade-in-50 duration-200">
+              <span className="block text-[10px] font-heading font-extrabold uppercase tracking-[0.2em] text-[#6B7280] mb-0.5">
                 Return
               </span>
               <input
@@ -239,13 +239,13 @@ export function FlightSearchForm({ initialValues, className }: FlightSearchFormP
                 min={currentDepart || todayIso}
                 {...form.register("return")}
                 aria-label="Return date"
-                className="w-full bg-transparent text-sm sm:text-base font-bold text-slate-900 focus:outline-none cursor-pointer border-0 p-0"
+                className="w-full bg-transparent text-sm sm:text-base font-heading font-bold text-[#0B1F2D] focus:outline-none cursor-pointer border-0 p-0"
               />
             </div>
           )}
 
           {/* Travellers & Cabin Class */}
-          <div className="flex-1 min-w-0 min-h-[64px] flex items-center bg-white relative">
+          <div className="flex-1 min-w-0 min-h-[68px] flex items-center bg-white relative">
             <Controller
               name="adults"
               control={control}
@@ -271,10 +271,10 @@ export function FlightSearchForm({ initialValues, className }: FlightSearchFormP
           <Button
             type="submit"
             aria-label="Search flights"
-            className="h-auto min-h-[64px] px-8 bg-[#D4A017] hover:bg-[#B88B13] text-[#0B1F2D] font-extrabold text-base flex items-center justify-center gap-2 rounded-none rounded-b-xl lg:rounded-b-none lg:rounded-r-xl transition-colors shrink-0 shadow-sm cursor-pointer border-0"
+            className="h-auto min-h-[68px] px-10 bg-[#D4A017] hover:bg-[#B88B13] active:scale-[0.99] text-[#0B1F2D] font-heading font-black text-base tracking-wide flex items-center justify-center gap-2.5 rounded-none rounded-b-2xl lg:rounded-b-none lg:rounded-r-2xl transition-all shrink-0 shadow-md cursor-pointer border-0"
           >
-            <span>Search</span>
-            <Search className="h-4 w-4 stroke-[2.5]" />
+            <span>Search Flights</span>
+            <Search className="h-4.5 w-4.5 stroke-[2.5]" />
           </Button>
         </div>
 

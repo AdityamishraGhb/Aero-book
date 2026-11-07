@@ -18,6 +18,9 @@ import { FlightSearchForm } from "@/components/search/flight-search-form";
 import { buildSearchUrl } from "@/lib/url";
 import { useCurrency } from "@/lib/hooks/use-currency";
 import { MobileAppSection } from "@/components/home/mobile-app-section";
+import { AirlineTrustMarquee } from "@/components/home/airline-trust-marquee";
+import { ProofMetricsStrip } from "@/components/home/proof-metrics-strip";
+import { LuxuryPreviewArtifact } from "@/components/home/luxury-preview-artifact";
 
 // Default future departure date helper (7 days from today)
 function getFutureDate(daysAhead: number): string {
@@ -116,75 +119,114 @@ export default function HomePage() {
   return (
     <div className="flex flex-col flex-1 w-full">
       {/* Hero Section with Official Midnight Navy Background (#0B1F2D) */}
-      <section className="relative overflow-hidden bg-[#0B1F2D] pt-10 pb-16 sm:pt-14 sm:pb-20 text-white border-b border-[#163247]">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          {/* Brand Headline from Style Guide */}
-          <div className="mb-6 sm:mb-8 text-left">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-[#D4A017]/30 text-xs font-semibold text-[#D4A017] mb-3">
-              <span>SMARTER SEARCHES. BETTER DEALS.</span>
+      <section className="relative overflow-hidden bg-[#0B1F2D] pt-12 pb-20 sm:pt-16 sm:pb-24 text-white border-b border-[#163247]">
+        {/* Subtle radial light blooms for luxury depth */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-gradient-to-b from-[#D4A017]/10 via-[#0E7C7B]/5 to-transparent blur-3xl pointer-events-none" />
+
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
+          {/* Eyebrow Badge & Editorial Scale Headline */}
+          <div className="mb-8 sm:mb-10 text-left max-w-3xl">
+            <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/10 border border-[#D4A017]/40 backdrop-blur-md text-xs font-bold text-white shadow-xs mb-4">
+              <span className="w-2 h-2 rounded-full bg-[#D4A017] animate-pulse" />
+              <span className="tracking-[0.18em] uppercase text-[11px] text-[#D4A017] font-heading font-extrabold">
+                Live Metasearch Engine
+              </span>
+              <span className="text-white/40">•</span>
+              <span className="text-white/90 text-[11px] font-medium font-sans">
+                1,200+ Global Airports
+              </span>
             </div>
-            <h1 className="font-heading text-3xl font-extrabold tracking-tight text-white sm:text-4xl lg:text-5xl leading-tight">
-              Your Next Journey, <span className="text-[#D4A017]">Simplified.</span>
+
+            <h1 className="font-heading text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-[-0.035em] text-white leading-[1.06]">
+              Your Next Journey,{" "}
+              <span className="text-[#D4A017] relative inline-block">
+                Simplified.
+              </span>
             </h1>
-            <p className="mt-2 text-sm sm:text-base text-white/80 max-w-2xl font-sans">
-              Millions of cheap flights, live transparent airfares, and direct airline bookings in one unified search.
+
+            <p className="mt-4 text-base sm:text-lg text-white/80 max-w-2xl font-sans leading-relaxed">
+              Unbiased flight comparisons, transparent fare breakdowns, and direct airline bookings with zero hidden markups across the world&apos;s leading carriers.
             </p>
           </div>
 
-          {/* Unified Horizontal Search Form */}
+          {/* Unified Horizontal Search Form / Floating Console */}
           <div className="w-full">
             <FlightSearchForm />
           </div>
         </div>
       </section>
 
-      {/* Main Content Area */}
+      {/* Main Quick Action Pills Floating Over Bottom of Hero */}
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 -mt-6 sm:-mt-8 z-20">
-        {/* 4 Quick Action Pills / Cards Styled with Brand Tokens */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
           <Link
             href="/flights/DEL-BOM?trip=oneway"
-            className="group flex items-center gap-3 rounded-xl bg-[#0B1F2D] border border-[#163247] p-4 text-white hover:bg-[#163247] hover:border-[#D4A017]/60 transition-all shadow-md"
+            className="group flex items-center gap-3 rounded-2xl bg-[#0B1F2D] border border-[#163247] p-4 text-white hover:bg-[#163247] hover:border-[#D4A017]/60 transition-all shadow-lg hover:-translate-y-0.5"
           >
-            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[#D4A017]/20 text-[#D4A017]">
+            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#D4A017]/20 text-[#D4A017]">
               <Sparkles className="h-5 w-5 group-hover:scale-110 transition-transform" />
             </div>
-            <span className="font-heading text-sm font-bold">Search with AI</span>
+            <div>
+              <span className="font-heading text-sm font-bold block">Search with AI</span>
+              <span className="text-[10px] text-white/50 font-sans">Smart routing engine</span>
+            </div>
           </Link>
 
           <Link
             href="#stays-info"
-            className="group flex items-center gap-3 rounded-xl bg-[#0B1F2D] border border-[#163247] p-4 text-white hover:bg-[#163247] hover:border-[#D4A017]/60 transition-all shadow-md"
+            className="group flex items-center gap-3 rounded-2xl bg-[#0B1F2D] border border-[#163247] p-4 text-white hover:bg-[#163247] hover:border-[#D4A017]/60 transition-all shadow-lg hover:-translate-y-0.5"
           >
-            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-white/10 text-white">
+            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white/10 text-white">
               <Hotel className="h-5 w-5 group-hover:scale-110 transition-transform" />
             </div>
-            <span className="font-heading text-sm font-bold">Stays</span>
+            <div>
+              <span className="font-heading text-sm font-bold block">Stays & Hotels</span>
+              <span className="text-[10px] text-[#D4A017] font-sans">Coming Q3 2027</span>
+            </div>
           </Link>
 
           <Link
             href="#cars-info"
-            className="group flex items-center gap-3 rounded-xl bg-[#0B1F2D] border border-[#163247] p-4 text-white hover:bg-[#163247] hover:border-[#D4A017]/60 transition-all shadow-md"
+            className="group flex items-center gap-3 rounded-2xl bg-[#0B1F2D] border border-[#163247] p-4 text-white hover:bg-[#163247] hover:border-[#D4A017]/60 transition-all shadow-lg hover:-translate-y-0.5"
           >
-            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-white/10 text-white">
+            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white/10 text-white">
               <Car className="h-5 w-5 group-hover:scale-110 transition-transform" />
             </div>
-            <span className="font-heading text-sm font-bold">Cars</span>
+            <div>
+              <span className="font-heading text-sm font-bold block">Car Rentals</span>
+              <span className="text-[10px] text-[#D4A017] font-sans">Coming Q3 2027</span>
+            </div>
           </Link>
 
           <Link
             href="#popular-routes"
-            className="group flex items-center gap-3 rounded-xl bg-[#0B1F2D] border border-[#163247] p-4 text-white hover:bg-[#163247] hover:border-[#D4A017]/60 transition-all shadow-md"
+            className="group flex items-center gap-3 rounded-2xl bg-[#0B1F2D] border border-[#163247] p-4 text-white hover:bg-[#163247] hover:border-[#D4A017]/60 transition-all shadow-lg hover:-translate-y-0.5"
           >
-            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-white/10 text-white">
+            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white/10 text-white">
               <Compass className="h-5 w-5 group-hover:scale-110 transition-transform" />
             </div>
-            <span className="font-heading text-sm font-bold">Explore everywhere</span>
+            <div>
+              <span className="font-heading text-sm font-bold block">Top 20 Corridors</span>
+              <span className="text-[10px] text-white/50 font-sans">Direct airline rates</span>
+            </div>
           </Link>
         </div>
+      </div>
 
-        {/* Skyscanner Benchmark Travel Trends Inspiration Banner Card */}
-        <div className="relative mt-10 sm:mt-14 overflow-hidden rounded-2xl sm:rounded-3xl shadow-xl min-h-[380px] sm:min-h-[440px] flex items-center">
+      {/* Global Airline Network Marquee Strip */}
+      <div className="mt-12 sm:mt-16">
+        <AirlineTrustMarquee />
+      </div>
+
+      {/* Enterprise Proof Metrics Strip */}
+      <ProofMetricsStrip />
+
+      {/* Layered 3D Luxury Boarding Pass & Metasearch Artifact */}
+      <LuxuryPreviewArtifact />
+
+      {/* Travel Trends Inspiration Showcase */}
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+        <div className="relative overflow-hidden rounded-2xl sm:rounded-3xl shadow-xl min-h-[380px] sm:min-h-[440px] flex items-center">
           {/* Background Travel Photography */}
           <Image
             src="/images/travel-trends-hero.jpg"
@@ -218,24 +260,24 @@ export default function HomePage() {
         </div>
       </div>
 
-      {/* Popular Routes Section */}
-      <section id="popular-routes" className="bg-background py-16 sm:py-24">
+      {/* Popular Routes Section with Luxury Cards */}
+      <section id="popular-routes" className="bg-[#F6F7FB] py-16 sm:py-24 border-t border-[#E5E7EB]">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
             <div>
-              <span className="text-xs font-bold uppercase tracking-wider text-primary">
+              <span className="text-[10px] font-heading font-extrabold uppercase tracking-[0.25em] text-[#D4A017]">
                 Curated Travel Corridors
               </span>
-              <h2 className="mt-1 font-heading text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+              <h2 className="mt-1 font-heading text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-[#0B1F2D]">
                 Trending Flight Routes
               </h2>
             </div>
-            <p className="text-xs sm:text-sm text-muted-foreground max-w-xs">
-              Frequent domestic and international routes with instant availability check.
+            <p className="text-xs sm:text-sm text-[#6B7280] max-w-sm font-sans">
+              Frequent domestic Indian corridors and international routes with instant availability and live multi-currency quotes.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {POPULAR_ROUTES.map((route) => {
               const searchUrl = buildSearchUrl({
                 from: route.from,
@@ -250,50 +292,50 @@ export default function HomePage() {
                 <Link
                   key={`${route.from}-${route.to}`}
                   href={searchUrl}
-                  className="group relative rounded-xl border border-border bg-card p-5 shadow-xs transition-all hover:border-primary/50 hover:shadow-soft-md"
+                  className="group relative rounded-2xl border border-slate-200/90 bg-white p-6 shadow-xs transition-all duration-300 hover:border-[#D4A017]/70 hover:shadow-soft-lg hover:-translate-y-1"
                 >
                   <div className="flex items-center justify-between">
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground bg-muted px-2 py-0.5 rounded-full">
+                    <span className="text-[10px] font-heading font-extrabold uppercase tracking-wider text-[#0B1F2D] bg-[#F6F7FB] border border-[#E5E7EB] px-2.5 py-0.5 rounded-full">
                       {route.tag}
                     </span>
-                    <span className="text-xs font-medium text-primary bg-primary/10 px-2 py-0.5 rounded-full">
+                    <span className="text-xs font-mono font-bold text-[#D4A017] bg-[#0B1F2D] px-2.5 py-0.5 rounded-full">
                       {route.duration}
                     </span>
                   </div>
 
-                  <div className="mt-4 flex items-center justify-between">
+                  <div className="mt-5 flex items-center justify-between">
                     <div>
-                      <span className="font-heading text-xl font-extrabold text-foreground">
+                      <span className="font-heading text-2xl font-black text-[#0B1F2D]">
                         {route.from}
                       </span>
-                      <p className="text-xs text-muted-foreground">{route.fromCity}</p>
+                      <p className="text-xs text-[#6B7280] font-medium">{route.fromCity}</p>
                     </div>
 
                     <div className="flex flex-col items-center">
-                      <Plane className="h-4 w-4 text-primary transition-transform group-hover:translate-x-1" />
-                      <span className="text-[10px] text-muted-foreground mt-0.5">Non-stop</span>
+                      <Plane className="h-4 w-4 text-[#D4A017] transition-transform group-hover:translate-x-1" />
+                      <span className="text-[10px] font-mono text-[#6B7280] mt-0.5">Non-stop</span>
                     </div>
 
                     <div className="text-right">
-                      <span className="font-heading text-xl font-extrabold text-foreground">
+                      <span className="font-heading text-2xl font-black text-[#0B1F2D]">
                         {route.to}
                       </span>
-                      <p className="text-xs text-muted-foreground">{route.toCity}</p>
+                      <p className="text-xs text-[#6B7280] font-medium">{route.toCity}</p>
                     </div>
                   </div>
 
-                  <div className="mt-4 flex items-center justify-between border-t border-border/60 pt-3">
+                  <div className="mt-5 flex items-center justify-between border-t border-slate-100 pt-3.5">
                     <div>
-                      <span className="text-[11px] text-muted-foreground block">
+                      <span className="text-[11px] text-[#6B7280] font-sans block">
                         Fares starting at
                       </span>
-                      <span className="font-heading text-base font-bold text-accent">
+                      <span className="font-heading text-lg font-black text-[#0B1F2D]">
                         {formatPrice(route.estFareInInr)}
                       </span>
                     </div>
 
-                    <span className="inline-flex items-center gap-1 text-xs font-semibold text-primary group-hover:underline">
-                      <span>Search Route</span>
+                    <span className="inline-flex items-center gap-1.5 text-xs font-bold text-[#D4A017] group-hover:translate-x-0.5 transition-transform">
+                      <span>View Deals</span>
                       <ArrowRight className="h-3.5 w-3.5" />
                     </span>
                   </div>

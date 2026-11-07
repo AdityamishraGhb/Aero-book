@@ -156,7 +156,7 @@ export function AirportCombobox({
             aria-label={`${label}: ${selectedAirport ? `${selectedAirport.city} (${selectedAirport.iata})` : placeholder}`}
             className={cn(
               isUnified
-                ? "w-full h-full text-left px-4 py-2.5 flex flex-col justify-center transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0062E3] hover:bg-slate-50 cursor-pointer select-none"
+                ? "w-full h-full text-left px-5 py-3 flex flex-col justify-center transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4A017] hover:bg-slate-50/90 cursor-pointer select-none"
                 : "w-full flex items-center justify-between text-left h-14 px-3.5 rounded-xl border bg-card transition-all shadow-xs hover:border-primary/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/20",
               isUnified
                 ? open
@@ -171,17 +171,17 @@ export function AirportCombobox({
           >
             {isUnified ? (
               <>
-                <span className="block text-[11px] font-bold uppercase tracking-wider text-slate-500 mb-0.5">
+                <span className="block text-[10px] font-heading font-extrabold uppercase tracking-[0.2em] text-[#6B7280] mb-0.5">
                   {label}
                 </span>
                 <div className="truncate">
                   {selectedAirport ? (
-                    <div className="flex items-baseline gap-1.5 truncate">
-                      <span className="font-heading text-sm sm:text-base font-bold text-slate-900 truncate">
+                    <div className="flex items-baseline gap-2 truncate">
+                      <span className="font-heading text-base sm:text-lg font-extrabold text-[#0B1F2D] truncate">
                         {selectedAirport.city}
                       </span>
-                      <span className="font-mono text-xs font-semibold text-slate-600">
-                        ({selectedAirport.iata})
+                      <span className="font-mono text-xs font-bold text-[#D4A017] bg-[#0B1F2D] px-1.5 py-0.5 rounded-sm shrink-0">
+                        {selectedAirport.iata}
                       </span>
                     </div>
                   ) : (
